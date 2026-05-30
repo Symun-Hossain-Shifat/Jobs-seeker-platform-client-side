@@ -10,8 +10,8 @@ export default function Navbar() {
   const [open, setOpen] = useState(false);
 
   return (
-    <header className="w-full px-4 sm:px-6 lg:px-5 py-4 ">
-      <nav className="max-w-7xl mx-auto flex items-center justify-between">
+    <header className="w-full px-4  sm:px-6 lg:px-5 py-4 ">
+      <nav className="max-w-7xl mx-auto flex items-center  justify-between">
 
         {/* Left Logo */}
         <div className="flex items-center gap-2 flex-shrink-0 ">
@@ -86,7 +86,7 @@ export default function Navbar() {
 
       {/* Mobile Menu */}
       {open && (
-        <div className="md:hidden mt-4 bg-[#252525] rounded-xl p-5 border border-gray-700">
+        <div className="md:hidden mt-4 rounded-xl p-5 border border-gray-700">
           <ul className="flex flex-col gap-4 text-gray-300">
             <li>
               <Link href="/jobs">Browse Jobs</Link>

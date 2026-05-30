@@ -2,18 +2,20 @@
 
 import { Search, MapPin, Sparkles } from "lucide-react";
 
-export default function Bannerpage () {
+
+
+export default function Bannerpage() {
   return (
-    <section className="relative mt-20 min-h-[85vh] flex items-center justify-center overflow-hidden px-4">
+    <section className="relative min-h-[85vh] flex flex-col items-center justify-center overflow-hidden px-4">
 
-      {/* Bottom glow effect */}
-      <div className="absolute bottom-0 w-[500px] h-[150px] bg-blue-700 blur-[120px] opacity-50"></div>
+  
 
-      <div className="relative z-10 text-center max-w-5xl w-full">
 
-        {/* Top Badge */}
+      {/* HERO CONTENT */}
+      <div className="relative z-10 text-center max-w-5xl w-full pt-16">
+
+        {/* Badge */}
         <div className="inline-flex items-center gap-2 px-5 py-2 rounded-full border border-gray-700 bg-[#111111]/80 backdrop-blur-md mb-8">
-
           <div className="w-6 h-6 rounded-full bg-orange-500 flex items-center justify-center">
             <Sparkles size={12} />
           </div>
@@ -35,20 +37,16 @@ export default function Bannerpage () {
         {/* Description */}
         <p className="text-gray-400 max-w-2xl mx-auto mt-5 text-sm md:text-base leading-7">
           HireLoop connects top talent with world-class companies.
-          Browse thousands of curated opportunities and land your next
-          role faster.
+          Browse thousands of curated opportunities and land your next role faster.
         </p>
 
-        {/* Search Container */}
+        {/* Search Box */}
         <div className="mt-10 bg-[#111111]/80 backdrop-blur-md border border-gray-700 rounded-2xl p-3 max-w-4xl mx-auto">
 
           <div className="flex flex-col md:flex-row gap-3">
 
-            {/* Search input */}
             <div className="flex items-center gap-3 flex-1 px-4 py-3 border border-gray-700 rounded-xl">
-
               <Search size={18} className="text-gray-500" />
-
               <input
                 type="text"
                 placeholder="Job title, skill or company"
@@ -56,11 +54,8 @@ export default function Bannerpage () {
               />
             </div>
 
-            {/* Location */}
             <div className="flex items-center gap-3 flex-1 px-4 py-3 border border-gray-700 rounded-xl">
-
               <MapPin size={18} className="text-gray-500" />
-
               <input
                 type="text"
                 placeholder="Location or Remote"
@@ -68,62 +63,36 @@ export default function Bannerpage () {
               />
             </div>
 
-            {/* Search Button */}
             <button className="bg-purple-600 hover:bg-purple-700 rounded-xl px-6 py-3 transition">
               <Search size={20} className="text-white" />
             </button>
-
           </div>
         </div>
 
-        {/* Trending Tags */}
-        {/* <div className="grid border-2 items-center grid-cols-1 gap-2.5 md:grid-cols-3   mt-8">
-
-          <span className="text-gray-500 text-sm">
+        {/* Trending */}
+        <div className="mt-8 flex flex-col md:flex-row items-center justify-center gap-4">
+          <span className="text-gray-500 text-sm whitespace-nowrap">
             Trending Position:
           </span>
 
-         
-          <div className=" border-2  gap-3 grid grid-cols-1 md:grid-cols-3 justify-center">
-           <button className="px-8 max-w-full py-2 rounded-full bg-[#161616] border border-gray-700 text-sm text-gray-300 hover:text-white hover:border-gray-500 transition"
->
-             Product Designer
+          <div className="flex flex-wrap gap-3 justify-center">
+            <button className="px-5 py-2 rounded-full bg-[#161616] border border-gray-700 text-sm text-gray-300 hover:text-white hover:border-gray-500 transition">
+              Product Designer
             </button>
-           <button className="px-4 py-2 rounded-full bg-[#161616] border border-gray-700 text-sm text-gray-300 hover:text-white hover:border-gray-500 transition"
->
-             UI Engineer
+
+            <button className="px-5 py-2 rounded-full bg-[#161616] border border-gray-700 text-sm text-gray-300 hover:text-white hover:border-gray-500 transition">
+              UI Engineer
             </button>
-           <button className="px-4 py-2 rounded-full bg-[#161616] border border-gray-700 text-sm text-gray-300 hover:text-white hover:border-gray-500 transition"
->
-             DevOps Engineer
+
+            <button className="px-5 py-2 rounded-full bg-[#161616] border border-gray-700 text-sm text-gray-300 hover:text-white hover:border-gray-500 transition">
+              DevOps Engineer
             </button>
           </div>
-            
-          
-        </div> */}
-
-        {/* Trending Tags */}
-<div className="mt-8 justify-center flex flex-col  md:flex-row items-center gap-4">
-  <span className="text-gray-500 text-sm whitespace-nowrap">
-    Trending Position:
-  </span>
-
-  <div className="flex flex-wrap gap-3">
-    <button className="px-5 py-2 rounded-full bg-[#161616] border border-gray-700 text-sm text-gray-300 hover:text-white hover:border-gray-500 transition">
-      Product Designer
-    </button>
-
-    <button className="px-5 py-2 rounded-full bg-[#161616] border border-gray-700 text-sm text-gray-300 hover:text-white hover:border-gray-500 transition">
-      UI Engineer
-    </button>
-
-    <button className="px-5 py-2 rounded-full bg-[#161616] border border-gray-700 text-sm text-gray-300 hover:text-white hover:border-gray-500 transition">
-      DevOps Engineer
-    </button>
-  </div>
-</div>
-
+        </div>
       </div>
+
+
+
     </section>
   );
 }

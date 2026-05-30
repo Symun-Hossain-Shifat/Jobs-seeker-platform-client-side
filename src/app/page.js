@@ -1,11 +1,17 @@
 import Bannerpage from "@/Components/Banner";
-import { Avatar, Badge } from "@heroui/react";
-import Image from "next/image";
+import FeaturedJobs from "@/Components/Discover";
+import Subheaderpage from "@/Components/SubHeader";
+import SubHeaderpage from "@/Components/SubHeader";
+
 
 export default function Home() {
   return (
     <div>
+     
     <Bannerpage></Bannerpage>
+    <Subheaderpage></Subheaderpage>
+    <FeaturedJobs></FeaturedJobs>
+   
     </div>
   );
 }
