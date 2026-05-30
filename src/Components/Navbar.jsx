@@ -10,7 +10,7 @@ export default function Navbar() {
   const [open, setOpen] = useState(false);
 
   return (
-    <header className="w-full px-4 sm:px-6 lg:px-5 py-4">
+    <header className="w-full px-4 sm:px-6 lg:px-5 py-4 ">
       <nav className="max-w-7xl mx-auto flex items-center justify-between">
 
         {/* Left Logo */}

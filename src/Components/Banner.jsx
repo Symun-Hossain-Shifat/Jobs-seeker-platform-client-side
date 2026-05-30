@@ -4,7 +4,7 @@ import { Search, MapPin, Sparkles } from "lucide-react";
 
 export default function Bannerpage () {
   return (
-    <section className="relative min-h-[85vh] flex items-center justify-center overflow-hidden px-4">
+    <section className="relative mt-20 min-h-[85vh] flex items-center justify-center overflow-hidden px-4">
 
       {/* Bottom glow effect */}
       <div className="absolute bottom-0 w-[500px] h-[150px] bg-blue-700 blur-[120px] opacity-50"></div>
@@ -77,25 +77,51 @@ export default function Bannerpage () {
         </div>
 
         {/* Trending Tags */}
-        <div className="flex flex-wrap justify-center gap-3 mt-8">
+        {/* <div className="grid border-2 items-center grid-cols-1 gap-2.5 md:grid-cols-3   mt-8">
 
           <span className="text-gray-500 text-sm">
             Trending Position:
           </span>
 
-          {[
-            "Product Designer",
-            "UI Engineer",
-            "DevOps Engineer",
-          ].map((tag) => (
-            <button
-              key={tag}
-              className="px-4 py-2 rounded-full bg-[#161616] border border-gray-700 text-sm text-gray-300 hover:text-white hover:border-gray-500 transition"
-            >
-              {tag}
+         
+          <div className=" border-2  gap-3 grid grid-cols-1 md:grid-cols-3 justify-center">
+           <button className="px-8 max-w-full py-2 rounded-full bg-[#161616] border border-gray-700 text-sm text-gray-300 hover:text-white hover:border-gray-500 transition"
+>
+             Product Designer
             </button>
-          ))}
-        </div>
+           <button className="px-4 py-2 rounded-full bg-[#161616] border border-gray-700 text-sm text-gray-300 hover:text-white hover:border-gray-500 transition"
+>
+             UI Engineer
+            </button>
+           <button className="px-4 py-2 rounded-full bg-[#161616] border border-gray-700 text-sm text-gray-300 hover:text-white hover:border-gray-500 transition"
+>
+             DevOps Engineer
+            </button>
+          </div>
+            
+          
+        </div> */}
+
+        {/* Trending Tags */}
+<div className="mt-8 justify-center flex flex-col  md:flex-row items-center gap-4">
+  <span className="text-gray-500 text-sm whitespace-nowrap">
+    Trending Position:
+  </span>
+
+  <div className="flex flex-wrap gap-3">
+    <button className="px-5 py-2 rounded-full bg-[#161616] border border-gray-700 text-sm text-gray-300 hover:text-white hover:border-gray-500 transition">
+      Product Designer
+    </button>
+
+    <button className="px-5 py-2 rounded-full bg-[#161616] border border-gray-700 text-sm text-gray-300 hover:text-white hover:border-gray-500 transition">
+      UI Engineer
+    </button>
+
+    <button className="px-5 py-2 rounded-full bg-[#161616] border border-gray-700 text-sm text-gray-300 hover:text-white hover:border-gray-500 transition">
+      DevOps Engineer
+    </button>
+  </div>
+</div>
 
       </div>
     </section>
