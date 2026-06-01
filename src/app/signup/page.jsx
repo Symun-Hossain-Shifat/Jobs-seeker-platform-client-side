@@ -1,10 +1,34 @@
-
+'use client'
+import { authClient } from "@/lib/auth-client";
 import Link from "next/link";
 import React from "react";
 import { FaEnvelope, FaGoogle, FaLock, FaUser } from "react-icons/fa";
 import { PiBracketsCurlyBold } from "react-icons/pi";
 
 function Signuppage() {
+
+
+  const Handlesignup = async (e) => {
+  e.preventDefault()
+  const FormData = e.target
+  const name = FormData.Name.value
+  const email = FormData.Email.value
+  const image = FormData.Image.value 
+  const password = FormData.Password.value 
+  // console.log(name , email , image , password)
+  const { data, error } = await authClient.signUp.email({
+    name: name, // required
+    email: email , // required
+    password: password , // required
+    image: image ,
+    callbackURL: "/signin",
+});
+if(data){
+  alert('Registration Successfull !')
+}else if (error){
+  alert(`Registration Failed . ${error}`)
+}
+  }
   return (
     <section className="min-h-screen bg-[#0A0A0A] flex items-center justify-center px-4 py-10">
       <div className="w-full max-w-md bg-[#111111] border border-gray-800 shadow-2xl rounded-2xl p-6 sm:p-8">
@@ -20,7 +44,7 @@ function Signuppage() {
         </div>
 
         {/* Form */}
-        <form className="space-y-5">
+        <form onSubmit={Handlesignup}   className="space-y-5">
 
           {/* Full Name */}
           <div>
