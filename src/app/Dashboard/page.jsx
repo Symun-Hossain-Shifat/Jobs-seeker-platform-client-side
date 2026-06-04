@@ -1,4 +1,5 @@
 'use client'
+import CardSection from '@/Components/Dashcard'
 import { authClient } from '@/lib/auth-client'
 import React from 'react'
 
@@ -10,9 +11,11 @@ function Dashboardpage () {
 
 
   return (
-    <div className='max-h-screen'>
+    <div className='max-h-screen p-5'>
 
-        <h1 className='bold text-3xl p-5'>Welcome back , {User?.name}</h1>
+        <h1 className='bold text-3xl py-5'>Welcome back , {User?.name}</h1>
+
+        <CardSection></CardSection>
     </div>
   )
 }

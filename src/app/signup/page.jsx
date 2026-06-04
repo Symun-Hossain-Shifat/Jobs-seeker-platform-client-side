@@ -4,6 +4,7 @@ import Link from "next/link";
 import React from "react";
 import { FaEnvelope, FaGoogle, FaLock, FaUser } from "react-icons/fa";
 import { PiBracketsCurlyBold } from "react-icons/pi";
+import {Description, Label, Radio, RadioGroup} from "@heroui/react";
 
 function Signuppage() {
 
@@ -122,6 +123,34 @@ if(data){
             </div>
           </div>
 
+          
+          {/* {Radiogroup section } */}
+
+                  <div className="flex flex-col gap-4">
+              <Label>Define Role</Label>
+              <RadioGroup defaultValue="Recruiter" name="plan-orientation" orientation="horizontal">
+                <Radio value="Recruiter">
+                  <Radio.Control>
+                    <Radio.Indicator />
+                  </Radio.Control>
+                  <Radio.Content>
+                    <Label>Recruiter</Label>
+                  
+                  </Radio.Content>
+                </Radio>
+                <Radio value="Job Seeker">
+                  <Radio.Control>
+                    <Radio.Indicator />
+                  </Radio.Control>
+                  <Radio.Content>
+                    <Label>Job Seeker</Label>
+                  
+                  </Radio.Content>
+                </Radio>
+                
+              </RadioGroup>
+            </div>
+
           {/* Register Button */}
           <button
             type="submit"
@@ -129,6 +158,7 @@ if(data){
           >
             Create Account
           </button>
+
 
           {/* Divider */}
           <div className="relative text-center text-sm text-gray-500">
