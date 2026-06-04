@@ -163,7 +163,16 @@ export default function PostJobPage() {
       postedAt: new Date().toISOString(),
       visibility: "public",
     }
-    console.log(JobsData);
+    const req = await fetch(`${process.env.NEXT_SERVER_URL}/alljobs` , {
+      method : 'POST', 
+    headers : {
+      'content-type' : 'application/json'
+    },
+    body : JSON.stringify(JobsData)
+    })
+    const result = await req.json()
+    console.log(result)
+    // console.log(JobsData);
     setLoading(false);
     setSubmitted(true);
   };
