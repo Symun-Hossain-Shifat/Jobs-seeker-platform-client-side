@@ -54,7 +54,7 @@ const User = session?.user
 
             <li>
               <Link
-                href="/Dashboard"
+                href="/Dashboard/recruiter"
                 className="hover:text-white transition"
               >
                 Dashboard
@@ -117,7 +117,7 @@ const User = session?.user
             </li>
 
             <li>
-              <Link href="/Dashboard">Dashboard</Link>
+              <Link href="/Dashboard/recruiter">Dashboard</Link>
             </li>
 
             <hr className="border-gray-600" />

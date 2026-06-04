@@ -10,7 +10,7 @@ export function SideNavigation() {
   const navItems = [
     { href: '/' ,icon: House, label: "Home"},
     { href: '/' ,icon: Magnifier, label: "Search"},
-    { href: '/' ,icon: Bell, label: "Notifications"},
+    { href: '/Dashboard/Jobs' ,icon: Bell, label: "Jobs"},
     { href: '/' ,icon: Envelope, label: "Messages"},
     { href: '/' ,icon: Person, label: "Profile"},
     { href: '/' ,icon: Gear, label: "Settings"},

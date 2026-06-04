@@ -1,7 +1,7 @@
 'use client'
 import { authClient } from "@/lib/auth-client";
 import Link from "next/link";
-import React from "react";
+import React, { useState } from "react";
 import { FaEnvelope, FaGoogle, FaLock, FaUser } from "react-icons/fa";
 import { PiBracketsCurlyBold } from "react-icons/pi";
 import {Description, Label, Radio, RadioGroup} from "@heroui/react";
@@ -9,19 +9,23 @@ import {Description, Label, Radio, RadioGroup} from "@heroui/react";
 function Signuppage() {
 
 
+  const [role , setRole ] = useState('Recruiter')
+
   const Handlesignup = async (e) => {
   e.preventDefault()
   const FormData = e.target
   const name = FormData.Name.value
   const email = FormData.Email.value
   const image = FormData.Image.value 
+  
   const password = FormData.Password.value 
-  // console.log(name , email , image , password)
+  console.log(name , email , image , password , role )
   const { data, error } = await authClient.signUp.email({
     name: name, // required
     email: email , // required
     password: password , // required
     image: image ,
+    role : role ,
     callbackURL: "/signin",
 });
 if(data){
@@ -128,7 +132,8 @@ if(data){
 
                   <div className="flex flex-col gap-4">
               <Label>Define Role</Label>
-              <RadioGroup defaultValue="Recruiter" name="plan-orientation" orientation="horizontal">
+              <RadioGroup  value={role}
+                                               onValueChange={setRole} orientation="horizontal">
                 <Radio value="Recruiter">
                   <Radio.Control>
                     <Radio.Indicator />
