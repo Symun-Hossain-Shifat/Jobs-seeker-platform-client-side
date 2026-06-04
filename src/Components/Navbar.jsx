@@ -1,14 +1,19 @@
-"use client";
+'use client'
 
 import Link from "next/link";
 import { useState } from "react";
 import { Menu, X } from "lucide-react";
 import logo from '@/asset/logo.png'
 import Image from "next/image";
+import { authClient } from "@/lib/auth-client";
 
 export default function Navbar() {
   const [open, setOpen] = useState(false);
 
+
+const { data: session } = authClient.useSession()
+const User = session?.user
+// console.log(User)
   return (
     <header className="w-full px-4  sm:px-6 lg:px-5 py-4 bg-gray-950 sticky top-0 z-50">
       <nav className="max-w-7xl mx-auto flex items-center  justify-between">
@@ -49,10 +54,10 @@ export default function Navbar() {
 
             <li>
               <Link
-                href="/pricing"
+                href="/Dashboard"
                 className="hover:text-white transition"
               >
-                Pricing
+                Dashboard
               </Link>
             </li>
           </ul>
@@ -62,12 +67,27 @@ export default function Navbar() {
 
           {/* Auth Buttons */}
           <div className="flex items-center gap-5">
-            <Link
-              href="/signin"
-              className="text-purple-400 hover:text-purple-300 font-medium"
-            >
-              Sign In
-            </Link>
+            
+            {User ? (
+              <button
+                      onClick={async () => {
+                        await authClient.signOut();
+                      }}
+                      className="text-purple-400"
+              >
+                Logout
+              </button>
+              
+            ) : (
+               <Link
+                href="/signin"
+                className="text-purple-400"
+              >
+                Sign In
+              </Link>
+              
+            )}
+          
 
             <button className="bg-white text-black px-5 py-2 rounded-xl font-medium hover:scale-105 transition">
               Get Started
@@ -97,18 +117,31 @@ export default function Navbar() {
             </li>
 
             <li>
-              <Link href="/pricing">Pricing</Link>
+              <Link href="/Dashboard">Dashboard</Link>
             </li>
 
             <hr className="border-gray-600" />
 
             <li>
-              <Link
+            {User ? (
+              <button
+                      onClick={async () => {
+                        await authClient.signOut();
+                      }}
+                      className="text-purple-400"
+              >
+                Logout
+              </button>
+              
+            ) : (
+               <Link
                 href="/signin"
                 className="text-purple-400"
               >
                 Sign In
               </Link>
+              
+            )}
             </li>
 
             <button className="bg-white text-black py-2 rounded-xl font-medium">
