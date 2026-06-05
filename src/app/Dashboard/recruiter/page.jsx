@@ -1,23 +1,32 @@
-'use client'
-import CardSection from '@/Components/Dashcard'
-import { authClient } from '@/lib/auth-client'
-import React from 'react'
 
-function Dashboardpage () {
 
-    const { data: session } = authClient.useSession()
-    const User = session?.user
-    console.log(User)
+
+import CardSection from "@/Components/Dashcard";
+import JobsTable from "@/Components/JobsTable";
+import { auth } from "@/lib/auth";
+import { headers } from "next/headers";
+
+
+
+
+export default async function Dashboardpage() {
+
+
+const session = await auth.api.getSession({
+    headers: await headers(),
+  });
+  const User = session?.user;
+
 
 
   return (
-    <div className='max-h-screen p-5'>
+    <div className="max-h-screen p-5">
+      <h1 className="text-3xl font-bold py-5">
+        Welcome back, {User?.name}
+      </h1>
 
-        <h1 className='bold text-3xl py-5'>Welcome back , {User?.name}</h1>
-
-        <CardSection></CardSection>
+      <CardSection></CardSection>
+      <JobsTable></JobsTable>
     </div>
-  )
+  );
 }
-
-export default Dashboardpage 

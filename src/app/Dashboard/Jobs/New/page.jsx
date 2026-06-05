@@ -21,6 +21,8 @@ import {
   Users,
   Layers,
 } from "lucide-react";
+import { redirect } from "next/navigation";
+import { PostJob } from "@/lib/Action/jobs";
 
 // ─── Zod Schema ────────────────────────────────────────────────────────────────
 const jobSchema = z
@@ -163,14 +165,12 @@ export default function PostJobPage() {
       postedAt: new Date().toISOString(),
       visibility: "public",
     }
-    const req = await fetch(`${process.env.NEXT_SERVER_URL}/alljobs` , {
-      method : 'POST', 
-    headers : {
-      'content-type' : 'application/json'
-    },
-    body : JSON.stringify(JobsData)
-    })
-    const result = await req.json()
+   const Data = await PostJob(JobsData)
+   console.log(Data)
+
+    if(Data?.insertedId){
+      redirect('/Dashboard/recruiter')
+    }
     console.log(result)
     // console.log(JobsData);
     setLoading(false);

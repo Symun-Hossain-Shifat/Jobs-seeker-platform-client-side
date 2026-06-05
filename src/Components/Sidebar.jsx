@@ -8,10 +8,10 @@ import Link from "next/link";
 
 export function SideNavigation() {
   const navItems = [
-    { href: '/' ,icon: House, label: "Home"},
-    { href: '/' ,icon: Magnifier, label: "Search"},
-    { href: '/Dashboard/Jobs' ,icon: Bell, label: "Jobs"},
-    { href: '/' ,icon: Envelope, label: "Messages"},
+    { href: '/Dashboard/recruiter' ,icon: House, label: "Home"},
+    { href: '/Dashboard/recruiter' ,icon: Magnifier, label: "Search"},
+    { href: '/Dashboard/Jobs' ,icon: Bell, label: "All Jobs"},
+    { href: '/Dashboard/Jobs/New' ,icon: Envelope, label: "Add Job"},
     { href: '/' ,icon: Person, label: "Profile"},
     { href: '/' ,icon: Gear, label: "Settings"},
   ];

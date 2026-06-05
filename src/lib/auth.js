@@ -2,12 +2,20 @@ import { betterAuth } from "better-auth";
 import { MongoClient } from "mongodb";
 import { mongodbAdapter } from "better-auth/adapters/mongodb";
 
+
 const client = new MongoClient(process.env.MONGO_URL);
 
-// IMPORTANT: connect first
-await client.connect();
+let isConnected = false;
 
-const db = client.db("Userinformation");
+async function getDb() {
+  if (!isConnected) {
+    await client.connect();
+    isConnected = true;
+  }
+  return client.db("Userinformation");
+}
+
+const db = await getDb();
 
 export const auth = betterAuth({
   emailAndPassword: {
@@ -16,11 +24,11 @@ export const auth = betterAuth({
   database: mongodbAdapter(db, {
     client,
   }),
-   user: {
-       additionalFields: {
-          role: {
-              defaultValue : 'Job seeker'
-            } 
-        }
-    }
+  user: {
+    additionalFields: {
+      role: {
+        defaultValue: "Job seeker",
+      },
+    },
+  },
 });
