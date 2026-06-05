@@ -2,7 +2,7 @@
 
 
 import CardSection from "@/Components/Dashcard";
-import JobsTable from "@/Components/JobsTable";
+
 import { auth } from "@/lib/auth";
 import { headers } from "next/headers";
 
@@ -26,7 +26,7 @@ const session = await auth.api.getSession({
       </h1>
 
       <CardSection></CardSection>
-      <JobsTable></JobsTable>
+     
     </div>
   );
 }

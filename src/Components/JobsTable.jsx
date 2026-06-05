@@ -5,10 +5,10 @@ import React from 'react'
 
 async function JobsTable() {
 
-  const companyId = 'company_123'
-  const status = 'Active'
+  const companyId = "company_123"
+  const status = "active"
   const Datas = await GetJob(companyId,status);
-  console.log(Datas)   
+  // console.log(Datas)   
   return (
      <div className="">
       <h1 className='font-bold text-2xl py-4'>Manage All Jobs</h1>

@@ -1,10 +1,13 @@
-import { Button } from '@heroui/react'
-import Link from 'next/link'
+import JobsTable from '@/Components/JobsTable'
+
 import React from 'react'
 
 function Jobspage () {
   return (
-    <div className=''>Jobspage  </div>
+    <div className='p-5'>
+<JobsTable></JobsTable>
+    </div>
+     
   )
 }
 
