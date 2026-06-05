@@ -1,4 +1,4 @@
-export async  function PostJob ({JobsData}) {
+export async  function PostJob (JobsData) {
      const res = await fetch(`${process.env.NEXT_PUBLIC_SERVER_URL}/api/alljobs` , {
           method : 'POST', 
         headers : {

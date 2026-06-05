@@ -5,6 +5,7 @@ import React, { useState } from "react";
 import { FaEnvelope, FaGoogle, FaLock, FaUser } from "react-icons/fa";
 import { PiBracketsCurlyBold } from "react-icons/pi";
 import {Description, Label, Radio, RadioGroup} from "@heroui/react";
+import { redirect } from "next/navigation";
 
 function Signuppage() {
 
@@ -30,6 +31,7 @@ function Signuppage() {
 });
 if(data){
   alert('Registration Successfull !')
+  redirect('/signin')
 }else if (error){
   alert(`Registration Failed . ${error}`)
 }
@@ -132,8 +134,7 @@ if(data){
 
                   <div className="flex flex-col gap-4">
               <Label>Define Role</Label>
-              <RadioGroup  value={role}
-                                               onValueChange={setRole} orientation="horizontal">
+              <RadioGroup  defaultValue= 'Recruiter' onChange={ value => setRole(value)}  orientation="horizontal">
                 <Radio value="Recruiter">
                   <Radio.Control>
                     <Radio.Indicator />

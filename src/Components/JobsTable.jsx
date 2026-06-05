@@ -5,26 +5,28 @@ import React from 'react'
 
 async function JobsTable() {
 
-    
-  const Datas = await GetJob();
+  const companyId = 'company_123'
+  const status = 'Active'
+  const Datas = await GetJob(companyId,status);
   console.log(Datas)   
   return (
-     <div className="p-4">
+     <div className="">
+      <h1 className='font-bold text-2xl py-4'>Manage All Jobs</h1>
       <table className="w-full border border-gray-700 text-white">
         <thead className="bg-gray-800">
           <tr>
-            <th className="p-3 text-left">Candidate Position</th>
-            <th>Role</th>
+            <th className="p-3 text-center">Candidate Position</th>
+            <th>Type</th>
             <th>Date Applied</th>
-            <th>Experience</th>
             <th>Status</th>
+            <th>Visibility</th>
             <th>Actions</th>
           </tr>
         </thead>
 
         <tbody>
           {Datas.map((c, index) => (
-            <tr key={index} className="border-t border-gray-700">
+            <tr key={index} className="border-t text-center border-gray-700">
               <td className="p-3">{c.title}</td>
               <td>{c.type}</td>
               <td>{c.deadline}</td>

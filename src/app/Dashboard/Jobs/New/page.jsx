@@ -165,13 +165,14 @@ export default function PostJobPage() {
       postedAt: new Date().toISOString(),
       visibility: "public",
     }
+    console.log(JobsData)
    const Data = await PostJob(JobsData)
    console.log(Data)
 
-    if(Data?.insertedId){
+    if(Data?.result?.insertedId){
       redirect('/Dashboard/recruiter')
     }
-    console.log(result)
+    // console.log(result)
     // console.log(JobsData);
     setLoading(false);
     setSubmitted(true);

@@ -21,16 +21,25 @@ export function SideNavigation() {
 
   const Navmenu =   <div>
     <nav className="flex flex-col gap-1">
-      <div >
-        <div className="flex items-center gap-4">
-           <img className="rounded-full" src={User?.image} alt="User Image" width={60}  height={60} />
+      <div>
+  <div className="flex items-center gap-4">
+
+          <div
+  className="rounded-full  w-20 h-20 bg-cover bg-center"
+  style={{ backgroundImage: `url(${User?.image})` }}
+>
+          </div>
+           
                    <div>
                     <h1 className="font-semibold">{User?.name}</h1>
                     <p>Hello</p>
                    </div>
         </div>
-                 <button className="py-1.5 my-2 px-2 rounded-2xl bg-black">Premium Account</button>  
-                  </div>
+        <p>{User?.role}</p>
+      </div>
+      
+                 
+                 
                 {navItems.map((item) => (
                 <Link
                     href={item.href}
