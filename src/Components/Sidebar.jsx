@@ -9,7 +9,7 @@ import Link from "next/link";
 export function SideNavigation() {
   const navItems = [
     { href: '/Dashboard/recruiter' ,icon: House, label: "Home"},
-    { href: '/Dashboard/recruiter' ,icon: Magnifier, label: "Search"},
+    { href: '/Dashboard/Company' ,icon: Magnifier, label: "Company"},
     { href: '/Dashboard/Jobs' ,icon: Bell, label: "All Jobs"},
     { href: '/Dashboard/Jobs/New' ,icon: Envelope, label: "Add Job"},
     { href: '/' ,icon: Person, label: "Profile"},
@@ -21,7 +21,7 @@ export function SideNavigation() {
 
   const Navmenu =   <div>
     <nav className="flex flex-col gap-1">
-      <div>
+      
   <div className="flex items-center gap-4">
 
           <div
@@ -35,8 +35,7 @@ export function SideNavigation() {
                     <p>Hello</p>
                    </div>
         </div>
-        <p>{User?.role}</p>
-      </div>
+
       
                  
                  
