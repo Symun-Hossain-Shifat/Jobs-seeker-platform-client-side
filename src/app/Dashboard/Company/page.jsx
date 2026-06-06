@@ -13,9 +13,13 @@ import {
     FieldError, 
     Select, 
     ListBox, 
-    Button 
+    Button, 
+    toast
 } from '@heroui/react';
 import { ArrowUpToLine, Globe, Factory, Pencil, ChevronDown, House } from '@gravity-ui/icons';
+import { PostCompany } from '@/lib/Action/PostData/company';
+import company from '@/asset/Company.jpg'
+import Image from 'next/image';
 
 const inputClass = "w-full bg-zinc-900 border border-zinc-700 text-white rounded-xl px-4 py-3 outline-none focus:border-violet-500 transition-all placeholder:text-zinc-500";
 const selectTriggerClass = "w-full bg-zinc-900 border border-zinc-700 text-white rounded-xl px-4 py-3 flex items-center justify-between outline-none focus:border-violet-500";
@@ -65,7 +69,7 @@ export default function CompanyProfile() {
     };
 
     // Form Submit
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
         const formData = new FormData(e.currentTarget);
 
@@ -79,7 +83,7 @@ export default function CompanyProfile() {
             logo: logoUrl || (company?.logo || ''),
             status: company?.status || 'Pending',
         };
-
+           
         // Basic validation
         const newErrors = {};
         if (!newCompany.name) newErrors.companyName = "Company name is required";
@@ -94,6 +98,9 @@ export default function CompanyProfile() {
         setCompany(newCompany);
         console.log("✅ Company Data Submitted:", newCompany);
 
+        const result = await PostCompany(newCompany)
+      console.log(result)
+      toast.success(`${result?.message}`)
         setErrors({});
         setIsEditing(false);
     };
@@ -136,7 +143,17 @@ export default function CompanyProfile() {
         return (
             <div className="max-w-4xl p-6 mx-auto mt-8 bg-zinc-950 border border-zinc-800 rounded-3xl overflow-hidden">
                 {/* Cover */}
-                <div className="h-48 bg-gradient-to-r from-violet-600 via-fuchsia-600 to-pink-600" />
+                <div className="h-48 relative overflow-hidden">
+                <Image
+                    src={ company }
+                    alt="cover"
+                    fill
+                    className="object-cover"
+                />
+
+                {/* optional dark overlay */}
+                <div className="absolute inset-0 bg-black/40" />
+                </div>
 
                 <div className="px-8 -mt-12 relative">
                     <div className="flex flex-col md:flex-row gap-6 items-end">

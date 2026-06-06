@@ -22,7 +22,8 @@ import {
   Layers,
 } from "lucide-react";
 import { redirect } from "next/navigation";
-import { PostJob } from "@/lib/Action/jobs";
+import { PostJob } from "@/lib/Action/PostData/jobs";
+
 
 // ─── Zod Schema ────────────────────────────────────────────────────────────────
 const jobSchema = z

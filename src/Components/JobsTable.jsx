@@ -1,6 +1,7 @@
 
 
-import { GetJob } from '@/lib/Action/Getjob';
+
+import { GetJob } from '@/lib/Action/GetData/Getjob';
 import React from 'react'
 
 async function JobsTable() {
