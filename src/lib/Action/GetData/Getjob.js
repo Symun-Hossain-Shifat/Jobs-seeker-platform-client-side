@@ -1,9 +1,19 @@
-// export async  function GetJob (companyId , status) {
-//         console.log(companyId,status)
-//      const res = await fetch(`${process.env.NEXT_PUBLIC_SERVER_URL}/api/alljobs?companyId=${companyId}&status=${status}`)
-//         const result = await res.json();
-//         return result ;
-// }
+
+export async function GetCompany(userId) {
+  if (!userId) {
+    console.log("No userId!");
+    return [];
+  }
+
+  const res = await fetch(
+    `${process.env.NEXT_PUBLIC_SERVER_URL}/api/companyinfo?recruiterId=${userId}`
+  );
+
+  const result = await res.json();
+  console.log("API RESULT:", result);
+
+  return result;
+}
 
 
 export async function GetJob(companyId, status) {

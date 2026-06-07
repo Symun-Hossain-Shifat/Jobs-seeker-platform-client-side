@@ -2,11 +2,19 @@
 
 
 import { GetJob } from '@/lib/Action/GetData/Getjob';
+import { auth } from '@/lib/auth';
+import { headers } from 'next/headers';
 import React from 'react'
 
 async function JobsTable() {
 
-  const companyId = "company_123"
+  const session = await auth.api.getSession({
+      headers: await headers(),
+    });
+    const User = session?.user?.id;
+  
+
+  const companyId = User
   const status = "active"
   const Datas = await GetJob(companyId,status);
   // console.log(Datas)   

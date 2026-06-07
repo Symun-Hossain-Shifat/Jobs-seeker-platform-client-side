@@ -23,6 +23,7 @@ import {
 } from "lucide-react";
 import { redirect } from "next/navigation";
 import { PostJob } from "@/lib/Action/PostData/jobs";
+import { authClient } from "@/lib/auth-client";
 
 
 // ─── Zod Schema ────────────────────────────────────────────────────────────────
@@ -137,6 +138,9 @@ const textareaCls =
 export default function PostJobPage() {
   const [submitted, setSubmitted] = useState(false);
   const [loading, setLoading] = useState(false);
+  const { data: session } = authClient.useSession()
+  const User = session?.user?.id
+  // console.log(User)
 
   const {
     register,
@@ -162,7 +166,7 @@ export default function PostJobPage() {
     const JobsData = {
       ...data,
       status: "active",
-      companyId: "company_123",
+      companyId: User ,
       postedAt: new Date().toISOString(),
       visibility: "public",
     }
