@@ -30,3 +30,23 @@ export async function GetJob(companyId, status) {
 
   return result;
 }
+
+
+
+
+
+
+export async function GetAllJob() {
+  
+
+  const baseURL = process.env.NEXT_PUBLIC_SERVER_URL;
+
+  const url = `${baseURL}/api/alljobs`;
+
+  
+
+  const res = await fetch(url);
+  const result = await res.json();
+
+  return result;
+}

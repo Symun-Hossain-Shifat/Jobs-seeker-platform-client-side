@@ -36,7 +36,7 @@ const User = session?.user
           <ul className="flex items-center gap-8 text-sm text-gray-300">
             <li>
               <Link
-                href="/jobs"
+                href="/Jobs"
                 className="hover:text-white transition"
               >
                 Browse Jobs
@@ -109,7 +109,7 @@ const User = session?.user
         <div className="md:hidden mt-4 rounded-xl p-5 border border-gray-700">
           <ul className="flex flex-col gap-4 text-gray-300">
             <li>
-              <Link href="/jobs">Browse Jobs</Link>
+              <Link href="/Jobs">Browse Jobs</Link>
             </li>
 
             <li>

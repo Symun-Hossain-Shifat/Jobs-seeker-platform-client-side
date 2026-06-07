@@ -13,14 +13,15 @@ async function CompanyPage () {
        headers: await headers(),
      });
      const User = session?.user?.id;
-    console.log(JSON.stringify(session, null, 2));
-      console.log(User)
-   const Company = await GetCompany(User)
-   console.log(Company)
+  
+      // console.log(User)
+    const Company = await GetCompany(User)
+    
+    // console.log(Company[0].name)
   return (
     <div>
 
-        <CompanyProfile id={User} CompanyName={Company}></CompanyProfile></div>
+        <CompanyProfile id={User}  companyName={Company}></CompanyProfile></div>
   )
 }
 

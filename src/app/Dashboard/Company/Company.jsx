@@ -31,11 +31,11 @@ const listItemClass = "px-4 py-2.5 rounded-lg cursor-pointer hover:bg-zinc-800 t
 export default function CompanyProfile(props) {
 
 const {id , companyName } = props
-console.log(id)
-      
+// console.log(id)
+    const Datas = companyName[0]
 // console.log(companyName)
 
-    const [company, setCompany] = useState(companyName);
+    const [company, setCompany] = useState(Datas);
     const [isEditing, setIsEditing] = useState(false);
     const [logoUrl, setLogoUrl] = useState('');
     const [isUploading, setIsUploading] = useState(false);
@@ -105,7 +105,7 @@ console.log(id)
         }
 
         setCompany(newCompany);
-        console.log("✅ Company Data Submitted:", newCompany);
+        // console.log("✅ Company Data Submitted:", newCompany);
 
         const result = await PostCompany(newCompany)
       console.log(result)
