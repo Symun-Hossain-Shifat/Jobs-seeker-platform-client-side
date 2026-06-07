@@ -1,12 +1,15 @@
 import { GetAllJob } from '@/lib/Action/GetData/Getjob'
 import React from 'react'
 import { MapPin, ArrowRight } from "lucide-react";
+import Link from 'next/link';
 async function BrowsJobsPage () {
     const Datas = await GetAllJob();
     console.log(Datas)
   return (
     <div className='p-5'>
         <h1 className='font-bold text-3xl '>All Available Jobs</h1>
+        <Link href={'/'}> <p className='text-blue-700 font-semibold '>Back Home</p></Link>
+       
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 py-5" >
             {Datas.map( job => (
                 <div
