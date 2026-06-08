@@ -61,13 +61,15 @@ export default async function FeaturedJobs() {
                             </span>
                           </div>
             
-                          <button className="group inline-flex items-center gap-2 text-white text-sm font-medium">
-                            Apply Now
-                            <ArrowRight
-                              size={14}
-                              className="transition-transform group-hover:translate-x-1"
-                            />
-                          </button>
+                        <Link href={`/Jobs/${job._id}`}>
+                      <button  className="group inline-flex items-center gap-2 text-white text-sm font-medium">
+                        View more
+                        <ArrowRight
+                          size={14}
+                          className="transition-transform group-hover:translate-x-1"
+                        />
+                      </button>
+                      </Link>
                         </div>
           ))}
         </div>

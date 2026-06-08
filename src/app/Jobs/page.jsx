@@ -4,7 +4,7 @@ import { MapPin, ArrowRight } from "lucide-react";
 import Link from 'next/link';
 async function BrowsJobsPage () {
     const Datas = await GetAllJob();
-    console.log(Datas)
+    // console.log(Datas)
   return (
     <div className='p-5'>
         <h1 className='font-bold text-3xl '>All Available Jobs</h1>
@@ -40,14 +40,16 @@ async function BrowsJobsPage () {
                   ${job.salaryMin}-${job.salaryMax}
                 </span>
               </div>
-
-              <button className="group inline-flex items-center gap-2 text-white text-sm font-medium">
-                Apply Now
+              <Link href={`/Jobs/${job._id}`}>
+              <button  className="group inline-flex items-center gap-2 text-white text-sm font-medium">
+                View more
                 <ArrowRight
                   size={14}
                   className="transition-transform group-hover:translate-x-1"
                 />
               </button>
+              </Link>
+              
             </div>
             ))}
         </div>

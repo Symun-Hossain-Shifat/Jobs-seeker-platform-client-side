@@ -32,6 +32,13 @@ export async function GetJob(companyId, status) {
 }
 
 
+export async function GetSpecificJob(id) {
+  const baseURL = process.env.NEXT_PUBLIC_SERVER_URL;
+
+  const res = await fetch(`${baseURL}/api/alljobs/${id}`);
+
+  return await res.json();
+}
 
 
 
