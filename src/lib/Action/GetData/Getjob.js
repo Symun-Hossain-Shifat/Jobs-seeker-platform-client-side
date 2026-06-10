@@ -15,21 +15,23 @@ export async function GetCompany(userId) {
   return result;
 }
 
-
 export async function GetJob(companyId, status) {
-  console.log("INPUT:", companyId, status);
+  console.log("COMPANY ID:", companyId);
 
   const baseURL = process.env.NEXT_PUBLIC_SERVER_URL;
+ console.log(`${baseURL}/api/alljobs?companyId=${companyId}&status=${status}`)
+  const res = await fetch(
+    `${baseURL}/api/alljobs?companyId=${companyId}&status=${status}`,
+    {
+      cache: "no-store",
+    }
+  );
 
-  const url = `${baseURL}/api/alljobs?companyId=${companyId}&status=${status}`;
-
-  console.log("FINAL URL:", url);
-
-  const res = await fetch(url);
-  const result = await res.json();
-
-  return result;
+  return res.json();
 }
+
+
+
 
 
 export async function GetSpecificJob(id) {

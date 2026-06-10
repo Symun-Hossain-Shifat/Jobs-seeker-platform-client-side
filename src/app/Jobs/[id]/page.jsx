@@ -1,4 +1,7 @@
 import { GetSpecificJob } from "@/lib/Action/GetData/Getjob";
+import { auth } from "@/lib/auth";
+import { headers } from "next/headers";
+import Link from "next/link";
 
 // JobDetailPage.jsx
 export default async function JobDetailPage({ params }) {
@@ -14,6 +17,13 @@ export default async function JobDetailPage({ params }) {
     new Date(iso).toLocaleDateString("en-GB", {
       day: "numeric", month: "long", year: "numeric",
     });
+
+    const session = await auth.api.getSession({
+        headers: await headers(),
+      });
+      const User = session?.user;
+      console.log(User)
+    
 
   const skills = ["HTML5", "CSS3", "JavaScript", "React", "Next.js", "Tailwind CSS"];
 
@@ -36,11 +46,11 @@ export default async function JobDetailPage({ params }) {
             </p>
           </div>
           
-            <a href="mailto:careercodlinker2024@gmail.com"
+            <Link href={ User ? `/Jobs/${id}/apply` : `/signin`}
             className="flex items-center gap-2 bg-zinc-900 dark:bg-white text-white dark:text-zinc-900 text-sm font-medium px-5 py-2.5 rounded-lg hover:opacity-80 transition"
           >
             ✉ Apply Now
-          </a>
+          </Link>
         </div>
 
         <hr className="border-zinc-100 dark:border-zinc-800 my-4" />
