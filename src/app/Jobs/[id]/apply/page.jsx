@@ -22,7 +22,7 @@ export default async function Page({ params }) {
 
 
             const Id = User?.id
-            console.log(Id)
+            // console.log(Id)
 
             const result = await GetAppliedJob(Id)
             console.log(result)
@@ -35,7 +35,7 @@ export default async function Page({ params }) {
 {
     result.length < 3 ? <><Link href={`/Jobs/${id}`} className="text-blue-600 "> Back</Link>
    
-    <JobApplicationForm Job={job} Userinfo={User}></JobApplicationForm></> : <div className="flex h-screen items-center justify-center flex-col"><p>Your are Up to Date . please upgrade your profile for apply more job</p> <Link href={'/plans'}><Button variant="Primary" className= 'p-3 text-xl'>
+    <JobApplicationForm Job={job} Userinfo={User}></JobApplicationForm></> : <div className="flex h-screen items-center justify-center flex-col space-y-4 "><p>Your are Up to Date . please upgrade your profile for apply more job</p> <Link href={'/plans'}><Button variant="danger-soft" className= 'p-3 text-xl flex items-center'>
         Upgrade Now</Button></Link></div> 
 }
 

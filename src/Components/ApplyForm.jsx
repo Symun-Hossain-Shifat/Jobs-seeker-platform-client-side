@@ -6,7 +6,7 @@ import { redirect } from "next/navigation";
 import { useState } from "react";
 
 export default function JobApplicationForm({ Job, Userinfo }) {
-    // console.log(Job , Userinfo)
+    // console.log( Userinfo)
   const [form, setForm] = useState({
     fullName: Userinfo?.name || "",
     email: Userinfo?.email || "",
@@ -48,8 +48,8 @@ export default function JobApplicationForm({ Job, Userinfo }) {
      const FinalData = {
           ...form,
           jobId: Job?._id,
-          userId: Userinfo?._id,
-          company: Job?.companyId
+         
+          company: Userinfo.id
 ,
           appliedAt: new Date().toISOString(),
         }
