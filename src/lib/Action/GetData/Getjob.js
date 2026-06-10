@@ -10,18 +10,33 @@ export async function GetCompany(userId) {
   );
 
   const result = await res.json();
-  console.log("API RESULT:", result);
+  // console.log("API RESULT:", result);
 
   return result;
 }
 
 export async function GetJob(companyId, status) {
-  console.log("COMPANY ID:", companyId);
+ 
 
   const baseURL = process.env.NEXT_PUBLIC_SERVER_URL;
- console.log(`${baseURL}/api/alljobs?companyId=${companyId}&status=${status}`)
+//  console.log(`${baseURL}/api/alljobs?companyId=${companyId}&status=${status}`)
   const res = await fetch(
     `${baseURL}/api/alljobs?companyId=${companyId}&status=${status}`,
+    {
+      cache: "no-store",
+    }
+  );
+
+  return res.json();
+}
+
+
+export async function GetAppliedJob(company) {
+  console.log("COMPANY ID:", company);
+
+  const baseURL = process.env.NEXT_PUBLIC_SERVER_URL;
+//  console.log(`${baseURL}/api/appliedjob?UserId=${UserId}`)
+  const res = await fetch(`${baseURL}/api/appliedjob?company=${company}`,
     {
       cache: "no-store",
     }
