@@ -12,6 +12,7 @@ async function Planspage() {
   const jobSeekerPlans = [
     {
       name: "Free",
+      id:'seeker_free',
       price: "$0",
       period: "forever",
       featured: false,
@@ -26,6 +27,7 @@ async function Planspage() {
     },
     {
       name: "Pro",
+      id:'seeker_pro',
       price: "$19",
       period: "month",
       featured: true,
@@ -40,6 +42,7 @@ async function Planspage() {
     },
     {
       name: "Premium",
+      id:'seeker_premium',
       price: "$39",
       period: "month",
       featured: false,
@@ -58,6 +61,7 @@ async function Planspage() {
   const recruiterPlans = [
     {
       name: "Free",
+      id:'reqruiter_free',
       price: "$0",
       period: "forever",
       featured: false,
@@ -72,6 +76,7 @@ async function Planspage() {
     },
     {
       name: "Growth",
+      id:'reqruiter_growth',
       price: "$49",
       period: "month",
       featured: true,
@@ -86,6 +91,7 @@ async function Planspage() {
     },
     {
       name: "Enterprise",
+      id:'reqruiter_enterprise',
       price: "$149",
       period: "month",
       featured: false,
@@ -155,6 +161,7 @@ async function Planspage() {
             </ul>
               
             <form action="/api/checkout_sessions" method="POST">
+            <input type="hidden" name="plan_id" value={plan.id} />
             <section>
               <button type="submit" role="link" className={`w-full text-blue-700 font-semibold  py-2.5 rounded-lg ${
                 plan.featured
