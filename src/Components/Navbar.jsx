@@ -45,10 +45,10 @@ const User = session?.user
 
             <li>
               <Link
-                href="/company"
+                href="/plans"
                 className="hover:text-white transition"
               >
-                Company
+                Plans
               </Link>
             </li>
 
@@ -113,7 +113,7 @@ const User = session?.user
             </li>
 
             <li>
-              <Link href="/company">Company</Link>
+              <Link href="/plans">Plans</Link>
             </li>
 
             <li>

@@ -153,17 +153,20 @@ async function Planspage() {
                 </li>
               ))}
             </ul>
-
-            <Button
-            variant="secondary"
-              className={`w-full  py-2.5 rounded-lg ${
+              
+            <form action="/api/checkout_sessions" method="POST">
+            <section>
+              <button type="submit" role="link" className={`w-full text-blue-700 font-semibold  py-2.5 rounded-lg ${
                 plan.featured
                   ? "bg-primary text-white"
                   : "border border-default-200"
-              }`}
-            >
-              {plan.cta}
-            </Button>
+              }`}>
+                {plan.cta}
+              </button>
+            </section>
+          </form>
+
+           
           </div>
         ))}
       </div>
