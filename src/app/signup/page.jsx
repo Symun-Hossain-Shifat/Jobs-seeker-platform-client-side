@@ -18,6 +18,7 @@ function Signuppage() {
   const name = FormData.Name.value
   const email = FormData.Email.value
   const image = FormData.Image.value 
+  const plan = role === 'Recruiter' ? 'reqruiter_free' : 'seeker_free';
   
   const password = FormData.Password.value 
   console.log(name , email , image , password , role )
@@ -27,6 +28,7 @@ function Signuppage() {
     password: password , // required
     image: image ,
     role : role ,
+    plan : plan ,
     callbackURL: "/signin",
 });
 if(data){

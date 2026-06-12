@@ -29,6 +29,9 @@ export const auth = betterAuth({
       role: {
         defaultValue: "Job seeker",
       },
+      Plans : {
+         defaultValue  :  'seeker_free'
+      }
     },
   },
 });
