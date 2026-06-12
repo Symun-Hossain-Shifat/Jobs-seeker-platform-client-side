@@ -2,7 +2,7 @@ import { stripe } from '@/lib/stripe'
 import { redirect } from 'next/navigation'
 import Link from 'next/link'
 import { Subscription } from '@/lib/Action/PostData/subscription'
-import { metadata } from '@/app/layout'
+
 
 
 

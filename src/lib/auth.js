@@ -12,7 +12,7 @@ async function getDb() {
     await client.connect();
     isConnected = true;
   }
-  return client.db("Userinformation");
+  return client.db("Jobseekingplatform");
 }
 
 const db = await getDb();
