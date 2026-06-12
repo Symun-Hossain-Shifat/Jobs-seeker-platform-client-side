@@ -1,15 +1,20 @@
 import { stripe } from '@/lib/stripe'
 import { redirect } from 'next/navigation'
 import Link from 'next/link'
+import { Subscription } from '@/lib/Action/PostData/subscription'
+import { metadata } from '@/app/layout'
+
+
 
 export default async function Success({ searchParams }) {
-  const { session_id } = await searchParams
 
+  // console.log( metadata.planid)
+const { session_id } = await searchParams
   if (!session_id)
     throw new Error('Please provide a valid session_id (`cs_test_...`)')
 
   const {
-    status,
+    status, metadata ,
     customer_details: { email: customerEmail },
     payment_intent,
     amount_total,
@@ -20,6 +25,13 @@ export default async function Success({ searchParams }) {
   if (status === 'open') return redirect('/')
 
   if (status === 'complete') {
+
+    const Data = {
+      email : customerEmail ,
+      PlanID : metadata.planid
+    }
+    const Result = await Subscription(Data)
+    console.log(Result)
     const orderRef = payment_intent?.id?.slice(-6).toUpperCase() ?? '------'
     const amount = amount_total ? `$${(amount_total / 100).toFixed(2)}` : '—'
     const date = new Date().toLocaleDateString('en-US', {
