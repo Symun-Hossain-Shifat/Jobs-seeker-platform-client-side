@@ -18,24 +18,24 @@ export function SideNavigation() {
   ];
  const SeekerNavItems = [
   { href: '/Dashboard/seeker', icon: LayoutGrid, label: "Dashboard" },
-  { href: '/Dashboard/seeker/Jobs', icon: Magnifier, label: "Jobs" },
-  { href: '/Dashboard/seeker/SavedJobs', icon: Bookmark, label: "Saved Jobs" },
-  { href: '/Dashboard/seeker/Applications', icon: FileText, label: "Applications" },
-  { href: '/Dashboard/seeker/Billing', icon: CreditCard, label: "Billing" },
-  { href: '/Dashboard/seeker/Settings', icon: Gear, label: "Settings" },
+  { href: '/Dashboard/seeker', icon: Magnifier, label: "Jobs" },
+  { href: '/Dashboard/seeker', icon: Bookmark, label: "Saved Jobs" },
+  { href: '/Dashboard/seeker', icon: FileText, label: "Applications" },
+  { href: '/Dashboard/seeker', icon: CreditCard, label: "Billing" },
+  { href: '/Dashboard/seeker', icon: Gear, label: "Settings" },
 ];
 
   const { data: session } = authClient.useSession()
   const User = session?.user
 const GetNavitems = (role) => {
   const navItems = {
-    reqruiter: ReqruiterNavItems,
-    seeker: SeekerNavItems,
+    'Recruiter': ReqruiterNavItems,
+    'Job Seeker' : SeekerNavItems,
   };
 
   return navItems[role] || [];
 };
- const navItems = GetNavitems(User?.role || 'seeker')
+ const navItems = GetNavitems(User?.role || 'Job Seeker')
   const Navmenu =   <div>
     <nav className="flex flex-col gap-1">
       

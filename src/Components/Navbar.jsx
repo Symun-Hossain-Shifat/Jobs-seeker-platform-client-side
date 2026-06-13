@@ -23,7 +23,7 @@ const navLinks = [
 ];
 let Role = ''
 if(User?.role === 'Recruiter'){
-Role = 'reqruiter'
+Role = 'recruiter'
 }else if(User?.role === 'Job Seeker'){
   Role = 'seeker'
 }else if(User?.role === 'admin'){
@@ -33,7 +33,7 @@ console.log(User?.role)
 if(User){
 navLinks.push(
   {
-    href: `/dashboard/${Role}`, label: "Dashboard" 
+    href: `/Dashboard/${Role}`, label: "Dashboard" 
   }
 )
 }
