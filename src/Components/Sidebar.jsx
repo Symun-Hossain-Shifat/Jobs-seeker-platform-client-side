@@ -1,24 +1,41 @@
 'use client'
 
 import { authClient } from "@/lib/auth-client";
-import {LayoutSideContentLeft , Bell, Envelope, Gear, House, Magnifier, Person} from "@gravity-ui/icons";
+import {LayoutSideContentLeft , Bell, Envelope, Gear, House, Magnifier, Person, Bookmark, FileText, CreditCard} from "@gravity-ui/icons";
 import {Button, Drawer} from "@heroui/react";
+import { LayoutGrid } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 
 export function SideNavigation() {
-  const navItems = [
+  const ReqruiterNavItems = [
     { href: '/Dashboard/recruiter' ,icon: House, label: "Home"},
-    { href: '/Dashboard/Company' ,icon: Magnifier, label: "Company"},
-    { href: '/Dashboard/Jobs' ,icon: Bell, label: "All Jobs"},
-    { href: '/Dashboard/Jobs/New' ,icon: Envelope, label: "Add Job"},
+    { href: '/Dashboard/recruiter/Company' ,icon: Magnifier, label: "Company"},
+    { href: '/Dashboard/recruiter/Jobs' ,icon: Bell, label: "All Jobs"},
+    { href: '/Dashboard/recruiter/Jobs/New' ,icon: Envelope, label: "Add Job"},
     { href: '/' ,icon: Person, label: "Profile"},
     { href: '/' ,icon: Gear, label: "Settings"},
   ];
+ const SeekerNavItems = [
+  { href: '/Dashboard/seeker', icon: LayoutGrid, label: "Dashboard" },
+  { href: '/Dashboard/seeker/Jobs', icon: Magnifier, label: "Jobs" },
+  { href: '/Dashboard/seeker/SavedJobs', icon: Bookmark, label: "Saved Jobs" },
+  { href: '/Dashboard/seeker/Applications', icon: FileText, label: "Applications" },
+  { href: '/Dashboard/seeker/Billing', icon: CreditCard, label: "Billing" },
+  { href: '/Dashboard/seeker/Settings', icon: Gear, label: "Settings" },
+];
 
   const { data: session } = authClient.useSession()
   const User = session?.user
+const GetNavitems = (role) => {
+  const navItems = {
+    reqruiter: ReqruiterNavItems,
+    seeker: SeekerNavItems,
+  };
 
+  return navItems[role] || [];
+};
+ const navItems = GetNavitems(User?.role || 'seeker')
   const Navmenu =   <div>
     <nav className="flex flex-col gap-1">
       

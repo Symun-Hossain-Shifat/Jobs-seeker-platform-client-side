@@ -1,5 +1,6 @@
-import JobsTable from '@/Components/JobsTable'
 
+
+import JobsTable from '@/Components/JobsTable'
 import React from 'react'
 
 function Jobspage () {

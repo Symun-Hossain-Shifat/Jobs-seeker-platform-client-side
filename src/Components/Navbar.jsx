@@ -1,150 +1,107 @@
-'use client'
+'use client';
 
 import Link from "next/link";
 import { useState } from "react";
 import { Menu, X } from "lucide-react";
-import logo from '@/asset/logo.png'
+import logo from '@/asset/logo.png';
 import Image from "next/image";
 import { authClient } from "@/lib/auth-client";
 
+
 export default function Navbar() {
   const [open, setOpen] = useState(false);
+  const { data: session } = authClient.useSession();
+  const User = session?.user;
 
 
-const { data: session } = authClient.useSession()
-const User = session?.user
-// console.log(User)
+  
+// Unified navigation links configuration
+const navLinks = [
+  { href: "/Jobs", label: "Browse Jobs" },
+  { href: "/plans", label: "Plans" }
+  
+];
+let Role = ''
+if(User?.role === 'Recruiter'){
+Role = 'reqruiter'
+}else if(User?.role === 'Job Seeker'){
+  Role = 'seeker'
+}else if(User?.role === 'admin'){
+ Role = 'admin'
+}
+console.log(User?.role)
+if(User){
+navLinks.push(
+  {
+    href: `/dashboard/${Role}`, label: "Dashboard" 
+  }
+)
+}
+  // Render Auth element cleanly
+  const renderAuthButton = () => (
+    User ? (
+      <button onClick={() => authClient.signOut()} className="text-purple-400 text-left">
+        Logout
+      </button>
+    ) : (
+      <Link href="/signin" className="text-purple-400">
+        Sign In
+      </Link>
+    )
+  );
+
   return (
-    <header className="w-full px-4  sm:px-6 lg:px-5 py-4 bg-gray-950 sticky top-0 z-50">
-      <nav className="max-w-7xl mx-auto flex items-center  justify-between">
-
+    <header className="w-full px-4 sm:px-6 lg:px-5 py-4 bg-gray-950 sticky top-0 z-50">
+      <nav className="max-w-7xl mx-auto flex items-center justify-between">
+        
         {/* Left Logo */}
-        <div className="flex items-center gap-2 flex-shrink-0 ">
-          <Image 
-          src={logo} 
-          alt="Logo Image"
-          width={100}
-          height={100}
-          
-          />
+        <div className="flex items-center gap-2 flex-shrink-0">
+          <Image src={logo} alt="Logo Image" width={100} height={100} />
         </div>
 
-        {/* Right Side Content */}
-        <div className="hidden md:flex items-center ml-auto  bg-[#252525] rounded-2xl px-3 py-3 ">
-
-          {/* Menu */}
+        {/* Desktop Content */}
+        <div className="hidden md:flex items-center ml-auto bg-[#252525] rounded-2xl px-3 py-3">
           <ul className="flex items-center gap-8 text-sm text-gray-300">
-            <li>
-              <Link
-                href="/Jobs"
-                className="hover:text-white transition"
-              >
-                Browse Jobs
-              </Link>
-            </li>
-
-            <li>
-              <Link
-                href="/plans"
-                className="hover:text-white transition"
-              >
-                Plans
-              </Link>
-            </li>
-
-            <li>
-              <Link
-                href="/Dashboard/recruiter"
-                className="hover:text-white transition"
-              >
-                Dashboard
-              </Link>
-            </li>
+            {navLinks.map((link) => (
+              <li key={link.href}>
+                <Link href={link.href} className="hover:text-white transition">
+                  {link.label}
+                </Link>
+              </li>
+            ))}
           </ul>
 
-          {/* Divider */}
           <div className="w-px h-6 bg-gray-600 mx-6"></div>
 
-          {/* Auth Buttons */}
-          <div className="flex items-center gap-5">
-            
-            {User ? (
-              <button
-                      onClick={async () => {
-                        await authClient.signOut();
-                      }}
-                      className="text-purple-400"
-              >
-                Logout
-              </button>
-              
-            ) : (
-               <Link
-                href="/signin"
-                className="text-purple-400"
-              >
-                Sign In
-              </Link>
-              
-            )}
-          
-
+          <div className="flex items-center gap-5 text-sm">
+            {renderAuthButton()}
             <button className="bg-white text-black px-5 py-2 rounded-xl font-medium hover:scale-105 transition">
               Get Started
             </button>
           </div>
         </div>
 
-        {/* Mobile Button */}
-        <button
-          className="md:hidden text-white"
-          onClick={() => setOpen(!open)}
-        >
+        {/* Mobile Toggle Button */}
+        <button className="md:hidden text-white" onClick={() => setOpen(!open)}>
           {open ? <X size={28} /> : <Menu size={28} />}
         </button>
       </nav>
 
       {/* Mobile Menu */}
       {open && (
-        <div className="md:hidden mt-4 rounded-xl p-5 border border-gray-700">
+        <div className="md:hidden mt-4 rounded-xl p-5 border border-gray-700 bg-gray-950">
           <ul className="flex flex-col gap-4 text-gray-300">
-            <li>
-              <Link href="/Jobs">Browse Jobs</Link>
-            </li>
-
-            <li>
-              <Link href="/plans">Plans</Link>
-            </li>
-
-            <li>
-              <Link href="/Dashboard/recruiter">Dashboard</Link>
-            </li>
-
+            {navLinks.map((link) => (
+              <li key={link.href} onClick={() => setOpen(false)}>
+                <Link href={link.href} className="block w-full">{link.label}</Link>
+              </li>
+            ))}
+            
             <hr className="border-gray-600" />
-
-            <li>
-            {User ? (
-              <button
-                      onClick={async () => {
-                        await authClient.signOut();
-                      }}
-                      className="text-purple-400"
-              >
-                Logout
-              </button>
-              
-            ) : (
-               <Link
-                href="/signin"
-                className="text-purple-400"
-              >
-                Sign In
-              </Link>
-              
-            )}
-            </li>
-
-            <button className="bg-white text-black py-2 rounded-xl font-medium">
+            
+            <li onClick={() => setOpen(false)}>{renderAuthButton()}</li>
+            
+            <button className="bg-white text-black py-2 rounded-xl font-medium w-full">
               Get Started
             </button>
           </ul>
