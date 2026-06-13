@@ -19,7 +19,7 @@ export function SideNavigation() {
  const SeekerNavItems = [
   { href: '/Dashboard/seeker', icon: LayoutGrid, label: "Dashboard" },
   { href: '/Dashboard/seeker', icon: Magnifier, label: "Jobs" },
-  { href: '/Dashboard/seeker', icon: Bookmark, label: "Saved Jobs" },
+  { href: '/Dashboard/seeker', icon: Bookmark, label: "Applied Jobs" },
   { href: '/Dashboard/seeker', icon: FileText, label: "Applications" },
   { href: '/Dashboard/seeker', icon: CreditCard, label: "Billing" },
   { href: '/Dashboard/seeker', icon: Gear, label: "Settings" },
