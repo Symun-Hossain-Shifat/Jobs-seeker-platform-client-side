@@ -31,8 +31,23 @@ export async function GetJob(companyId, status) {
 }
 
 
+export async function GetAppliedJobbyEmail(email) {
+  console.log("COMPANY ID:", email);
+
+  const baseURL = process.env.NEXT_PUBLIC_SERVER_URL;
+//  console.log(`${baseURL}/api/appliedjob?UserId=${UserId}`)
+  const res = await fetch(`${baseURL}/api/appliedjob?email=${email}`,
+    {
+      cache: "no-store",
+    }
+  );
+
+  return res.json();
+}
+
+
 export async function GetAppliedJob(company) {
-  console.log("COMPANY ID:", company);
+  // console.log("COMPANY ID:", company);
 
   const baseURL = process.env.NEXT_PUBLIC_SERVER_URL;
 //  console.log(`${baseURL}/api/appliedjob?UserId=${UserId}`)
