@@ -24,6 +24,7 @@ async function JobsTable() {
           <thead className="bg-gray-800">
             <tr>
               <th className="p-3 text-left">Job Title</th>
+              <th className="p-3 text-left">Company Name</th>
               <th className="p-3 text-left">Resume</th>
               <th className="p-3 text-left">Apply Date</th>
               <th className="p-3 text-left">Status</th>
@@ -39,6 +40,9 @@ async function JobsTable() {
               >
                 <td className="p-3 font-medium">
                   {job.position}
+                </td>
+                <td className="p-3 font-medium">
+                  {job.companyname}
                 </td>
 
                 <td className="p-3">

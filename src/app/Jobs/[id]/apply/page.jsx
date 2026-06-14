@@ -136,7 +136,7 @@ export default async function Page({ params }) {
       headers: await headers(),
     }),
   ]);
-
+  //  console.log(job)
   const user = session?.user;
 
   // Not logged in

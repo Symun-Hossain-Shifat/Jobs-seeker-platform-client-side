@@ -49,8 +49,10 @@ export default function JobApplicationForm({ Job, Userinfo }) {
           ...form,
           jobId: Job?._id,
          
-          company: Userinfo.id
-,
+          company: Userinfo.id ,
+          companyname : Job.Companyname ,
+          type : Job.type ,
+          status : Job.status ,
           appliedAt: new Date().toISOString(),
         }
     
