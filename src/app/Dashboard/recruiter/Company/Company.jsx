@@ -20,6 +20,8 @@ import { ArrowUpToLine, Globe, Factory, Pencil, ChevronDown, House } from '@grav
 import { PostCompany } from '@/lib/Action/PostData/company';
 import companybackground from '@/asset/Company.jpg'
 import Image from 'next/image';
+import { authClient } from '@/lib/auth-client';
+
 
 
 
@@ -30,11 +32,15 @@ const listItemClass = "px-4 py-2.5 rounded-lg cursor-pointer hover:bg-zinc-800 t
 
 export default function CompanyProfile(props) {
 
+const { data: session } = authClient.useSession()
+
+const email = session?.user?.email
+console.log(email) 
 const {id , companyName } = props
 // console.log(id)
     const Datas = companyName[0]
 // console.log(companyName)
-
+   
     const [company, setCompany] = useState(Datas);
     const [isEditing, setIsEditing] = useState(false);
     const [logoUrl, setLogoUrl] = useState('');
@@ -80,8 +86,9 @@ const {id , companyName } = props
     const handleSubmit = async (e) => {
         e.preventDefault();
         const formData = new FormData(e.currentTarget);
-
+    
         const newCompany = {
+            email : email ,
             name: formData.get('companyName'),
             websiteUrl: formData.get('websiteUrl'),
             industry: formData.get('industry') || 'Technology',

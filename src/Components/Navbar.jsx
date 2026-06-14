@@ -29,7 +29,7 @@ Role = 'recruiter'
 }else if(User?.role === 'admin'){
  Role = 'admin'
 }
-console.log(User?.role)
+// console.log(User?.role)
 if(User){
 navLinks.push(
   {
