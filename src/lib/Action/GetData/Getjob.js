@@ -1,4 +1,6 @@
 
+
+
 export async function GetCompany(userId) {
   if (!userId) {
     console.log("No userId!");
