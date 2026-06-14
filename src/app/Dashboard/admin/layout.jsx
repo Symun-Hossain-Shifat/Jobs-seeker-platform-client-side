@@ -1,0 +1,17 @@
+import { auth } from '@/lib/auth';
+import { headers } from 'next/headers';
+import { redirect } from 'next/navigation';
+import React from 'react'
+
+ async function AdminLayout ({children}) {
+  const session = await auth.api.getSession({
+      headers: await headers(),
+    });
+    const User = session?.user;
+    if(User?.role !== 'admin'){
+      redirect('/unauthorized')
+    }
+  return children 
+}
+
+export default AdminLayout 

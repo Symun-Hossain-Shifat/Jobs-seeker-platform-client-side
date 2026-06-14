@@ -1,9 +1,9 @@
 'use client'
 
 import { authClient } from "@/lib/auth-client";
-import {LayoutSideContentLeft , Bell, Envelope, Gear, House, Magnifier, Person, Bookmark, FileText, CreditCard} from "@gravity-ui/icons";
+import {LayoutSideContentLeft , Bell, Envelope, Gear, House, Magnifier, Person, Bookmark, FileText, CreditCard, Briefcase} from "@gravity-ui/icons";
 import {Button, Drawer} from "@heroui/react";
-import { LayoutGrid } from "lucide-react";
+import { Building, LayoutGrid, Users } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 
@@ -13,8 +13,8 @@ export function SideNavigation() {
     { href: '/Dashboard/recruiter/Company' ,icon: Magnifier, label: "Company"},
     { href: '/Dashboard/recruiter/Jobs' ,icon: Bell, label: "All Jobs"},
     { href: '/Dashboard/recruiter/Jobs/New' ,icon: Envelope, label: "Add Job"},
-    { href: '/' ,icon: Person, label: "Profile"},
-    { href: '/' ,icon: Gear, label: "Settings"},
+    { href: '/Dashboard/recruiter' ,icon: Person, label: "Profile"},
+    { href: '/Dashboard/recruiter' ,icon: Gear, label: "Settings"},
   ];
  const SeekerNavItems = [
   { href: '/Dashboard/seeker', icon: LayoutGrid, label: "Dashboard" },
@@ -24,11 +24,20 @@ export function SideNavigation() {
   { href: '/Dashboard/seeker', icon: CreditCard, label: "Billing" },
   { href: '/Dashboard/seeker', icon: Gear, label: "Settings" },
 ];
+const AdminNavItems = [
+  { href: '/Dashboard/admin', icon: LayoutGrid, label: "Dashboard" },
+  { href: '/Dashboard/admin/users', icon: Users , label: "Users" },
+  { href: '/Dashboard/admin/companies', icon: Building , label: "Companies" },
+  { href: '/Dashboard/admin/jobs', icon: Briefcase , label: "Jobs" },
+  { href: '/Dashboard/admin/payments', icon: CreditCard, label: "Payments" },
+  { href: '/Dashboard/admin/settings', icon: Gear, label: "Settings" },
+];
 
   const { data: session } = authClient.useSession()
   const User = session?.user
 const GetNavitems = (role) => {
   const navItems = {
+    'admin' : AdminNavItems ,
     'Recruiter': ReqruiterNavItems,
     'Job Seeker' : SeekerNavItems,
   };
