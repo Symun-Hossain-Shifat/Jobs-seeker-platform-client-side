@@ -1,9 +1,29 @@
-import React from 'react'
 
-function Companiespage () {
-  return (
-    <div>Companiespage </div>
-  )
-}
+import CompanyTable from '@/Components/Companytable';
+import { GetAllCompany } from '@/lib/Action/GetData/Getjob';
+import React from 'react';
 
-export default Companiespage 
+
+const AdminCompaniesPage = async () => {
+    const companies = await GetAllCompany()
+    console.log(companies)
+    
+    return (
+        <div className="min-h-screen bg-[#0d0d0f] p-8 text-neutral-100">
+            <div className="max-w-7xl mx-auto space-y-6">
+                <div>
+                    <h2 className="text-xl font-semibold tracking-tight text-neutral-200">
+                        Companies for review
+                    </h2>
+                    <p className="text-sm text-neutral-500 mt-1">
+                        Total items submitted: {companies.length}
+                    </p>
+                </div>
+                
+                <CompanyTable companies={companies} />
+            </div>
+        </div>
+    );
+};
+
+export default AdminCompaniesPage;

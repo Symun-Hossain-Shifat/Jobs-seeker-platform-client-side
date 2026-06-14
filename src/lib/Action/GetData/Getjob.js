@@ -19,6 +19,20 @@ export async function GetSpecificCompany(email) {
 
 
 
+export async function GetAllCompany() {
+  
+
+  const res = await fetch(
+    `${process.env.NEXT_PUBLIC_SERVER_URL}/api/companyinfo`
+  );
+
+  const result = await res.json();
+  // console.log("API RESULT:", result);
+
+  return result;
+}
+
+
 export async function GetCompany(userId) {
   if (!userId) {
     console.log("No userId!");
