@@ -103,7 +103,7 @@ const CompanyTable = ({ companies }) => {
                                         {/* Jobs Count Pill */}
                                         <Table.Cell className="py-4 align-middle">
                                             <span className="px-3 py-1 bg-neutral-800/60 text-neutral-400 rounded-full text-xs capitalize">
-                                                {company.jobCount}
+                                                {company.jobCount || 0 }
                                             </span>
                                         </Table.Cell>
 
