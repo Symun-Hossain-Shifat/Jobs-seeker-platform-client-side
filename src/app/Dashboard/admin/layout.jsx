@@ -8,7 +8,7 @@ import React from 'react'
       headers: await headers(),
     });
     const User = session?.user;
-    if(User?.role !== 'admin'){
+    if(User?.role !== 'Admin'){
       redirect('/unauthorized')
     }
   return children 

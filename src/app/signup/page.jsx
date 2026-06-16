@@ -31,6 +31,8 @@ function Signuppage() {
     plan : plan ,
     callbackURL: "/signin",
 });
+
+
 if(data){
   alert('Registration Successfull !')
   redirect('/signin')
@@ -38,6 +40,18 @@ if(data){
   alert(`Registration Failed . ${error}`)
 }
   }
+
+   const Googlesignin = async () => {
+        const data = await authClient.signIn.social({
+    provider: "google",
+  });
+
+  if(data){
+  
+  router.push('/')
+}else{
+  toast.warning(`Registration Failed !`)
+} }
   return (
     <section className="min-h-screen bg-[#0A0A0A] flex items-center justify-center px-4 py-10">
       <div className="w-full max-w-md bg-[#111111] border border-gray-800 shadow-2xl rounded-2xl p-6 sm:p-8">
@@ -179,6 +193,7 @@ if(data){
 
           {/* Google Button */}
           <button
+           onClick={Googlesignin}
             type="button"
             className="w-full border border-gray-700 bg-[#1A1A1A] py-3 rounded-lg flex items-center justify-center gap-2 text-gray-300 hover:bg-[#222222] transition"
           >

@@ -1,7 +1,7 @@
 'use client';
 
 import Link from "next/link";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Menu, X } from "lucide-react";
 import logo from '@/asset/logo.png';
 import Image from "next/image";
@@ -10,9 +10,9 @@ import { authClient } from "@/lib/auth-client";
 
 export default function Navbar() {
   const [open, setOpen] = useState(false);
-  const { data: session } = authClient.useSession();
+  const { data: session , isPending } = authClient.useSession();
   const User = session?.user;
- 
+  const [role , setRole] = useState('seeker')
 
   
 // Unified navigation links configuration
@@ -21,22 +21,32 @@ const navLinks = [
   { href: "/plans", label: "Plans" }
   
 ];
-let Role = ''
+
+
+useEffect(()=> {
 if(User?.role === 'Recruiter'){
-Role = 'recruiter'
+// Role = 'recruiter' 
+setRole('recruiter' )
 }else if(User?.role === 'Job Seeker'){
-  Role = 'seeker'
-}else if(User?.role === 'admin'){
- Role = 'admin'
+  setRole('seeker' )
+}else if(User?.role === 'Admin'){
+ setRole('admin' )
 }
-// console.log(User?.role)
-if(User){
+
+} , [User?.role])
+
+if(User && role){
+  // console.log(User?.role)
 navLinks.push(
   {
-    href: `/Dashboard/${Role}`, label: "Dashboard" 
+    href: `/Dashboard/${role}`, label: "Dashboard" 
   }
 )
 }
+if(isPending){
+  return <h1>Loading...</h1>
+}
+
   // Render Auth element cleanly
   const renderAuthButton = () => (
     User ? (

@@ -37,7 +37,7 @@ const AdminNavItems = [
   const User = session?.user
 const GetNavitems = (role) => {
   const navItems = {
-    'admin' : AdminNavItems ,
+    'Admin' : AdminNavItems ,
     'Recruiter': ReqruiterNavItems,
     'Job Seeker' : SeekerNavItems,
   };

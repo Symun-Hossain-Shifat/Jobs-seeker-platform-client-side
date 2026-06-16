@@ -25,8 +25,18 @@ function Signinpage() {
     alert('Login Successfull !')
   }else if (error){
     alert(`Login Failed . ${error}`)
-  }
-    }
+  }}
+const Googlesignin = async () => {
+           const data = await authClient.signIn.social({
+       provider: "google",
+     });
+   
+     if(data){
+     
+     router.push('/')
+   }else{
+     toast.warning(`Registration Failed !`)
+   }  }
 
 
   return (
@@ -116,6 +126,7 @@ function Signinpage() {
 
           {/* Google Sign In */}
           <button
+          onClick={Googlesignin}
             type="button"
             className="w-full border border-gray-700 bg-[#1A1A1A] py-3 rounded-lg flex items-center justify-center gap-2 text-gray-300 hover:bg-[#222222] transition"
           >
