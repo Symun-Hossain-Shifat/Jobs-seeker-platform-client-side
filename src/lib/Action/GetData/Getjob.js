@@ -1,3 +1,4 @@
+import { AuthHeader } from "./authHeader";
 
 
 
@@ -8,7 +9,7 @@ export async function GetSpecificCompany(email) {
   }
 
   const res = await fetch(
-    `${process.env.NEXT_PUBLIC_SERVER_URL}/api/companyinfo?email=${email}`
+    `${process.env.NEXT_PUBLIC_SERVER_URL}/api/companyinfo?email=${email} ` 
   );
 
   const result = await res.json();
@@ -55,9 +56,9 @@ export async function GetJob(companyId, status) {
   const baseURL = process.env.NEXT_PUBLIC_SERVER_URL;
 //  console.log(`${baseURL}/api/alljobs?companyId=${companyId}&status=${status}`)
   const res = await fetch(
-    `${baseURL}/api/alljobs?companyId=${companyId}&status=${status}`,
-    {
-      cache: "no-store",
+    `${baseURL}/api/alljobs?companyId=${companyId}&status=${status}`, {
+      
+      cache: "no-store"
     }
   );
 
@@ -70,9 +71,9 @@ export async function GetAppliedJobbyEmail(email) {
 
   const baseURL = process.env.NEXT_PUBLIC_SERVER_URL;
 //  console.log(`${baseURL}/api/appliedjob?UserId=${UserId}`)
-  const res = await fetch(`${baseURL}/api/appliedjob?email=${email}`,
-    {
-      cache: "no-store",
+  const res = await fetch(`${baseURL}/api/appliedjob?email=${email}`, {
+     
+      cache: "no-store"
     }
   );
 
@@ -85,9 +86,9 @@ export async function GetAppliedJob(company) {
 
   const baseURL = process.env.NEXT_PUBLIC_SERVER_URL;
 //  console.log(`${baseURL}/api/appliedjob?UserId=${UserId}`)
-  const res = await fetch(`${baseURL}/api/appliedjob?company=${company}`,
-    {
-      cache: "no-store",
+  const res = await fetch(`${baseURL}/api/appliedjob?company=${company}`, {
+      
+      cache: "no-store"
     }
   );
 
@@ -101,7 +102,10 @@ export async function GetAppliedJob(company) {
 export async function GetSpecificJob(id) {
   const baseURL = process.env.NEXT_PUBLIC_SERVER_URL;
 
-  const res = await fetch(`${baseURL}/api/alljobs/${id}`);
+  const res = await fetch(`${baseURL}/api/alljobs/${id}` , {
+
+      cache: "no-store"
+    });
 
   return await res.json();
 }
@@ -118,7 +122,7 @@ export async function GetAllJob() {
 
   
 
-  const res = await fetch(url);
+  const res = await fetch(url );
   const result = await res.json();
 
   return result;

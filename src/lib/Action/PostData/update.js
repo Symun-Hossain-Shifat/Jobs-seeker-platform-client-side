@@ -1,5 +1,6 @@
 'use server'
 import { revalidatePath } from "next/cache";
+import { AuthHeader } from "../GetData/authHeader";
 
 
 
@@ -10,7 +11,8 @@ export async function UpdateCompany(id, newData) {
     {
       method: "PATCH",
       headers: {
-        "Content-Type": "application/json",
+        "Content-Type": "application/json", 
+        ... await AuthHeader()
       },
       body: JSON.stringify(newData),
     }

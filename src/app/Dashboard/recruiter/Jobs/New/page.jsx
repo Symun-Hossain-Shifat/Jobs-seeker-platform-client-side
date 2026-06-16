@@ -1,24 +1,32 @@
-import React from 'react'
-import PostJobPage from './PostJobForm'
-import { auth } from '@/lib/auth';
-import { headers } from 'next/headers';
-import { GetSpecificCompany } from '@/lib/Action/GetData/Getjob';
+import React from "react";
+import PostJobPage from "./PostJobForm";
+import { auth } from "@/lib/auth";
+import { headers } from "next/headers";
+import { GetSpecificCompany } from "@/lib/Action/GetData/Getjob";
+import { redirect } from "next/navigation";
 
-async function Addjobpage () {
+async function Addjobpage() {
+  const session = await auth.api.getSession({
+    headers: await headers(),
+  });
 
-  
-     const session = await auth.api.getSession({
-         headers: await headers(),
-       });
-       const email = session?.user?.email;
+  const email = session?.user?.email;
 
-  const Companyinfo = await GetSpecificCompany(email)
-  // console.log(Companyinfo)
+  if (!email) {
+    redirect("/login");
+  }
+
+  const Companyinfo = await GetSpecificCompany(email);
+
+  if (!Companyinfo || Companyinfo.length === 0) {
+    redirect("/Dashboard/recruiter/Company");
+  }
+
   return (
     <div>
-      <PostJobPage Companyinfo={Companyinfo} ></PostJobPage>
+      <PostJobPage Companyinfo={Companyinfo} />
     </div>
-  )
+  );
 }
 
-export default Addjobpage 
+export default Addjobpage;

@@ -26,11 +26,11 @@ export function SideNavigation() {
 ];
 const AdminNavItems = [
   { href: '/Dashboard/admin', icon: LayoutGrid, label: "Dashboard" },
-  { href: '/Dashboard/admin/users', icon: Users , label: "Users" },
+  { href: '/Dashboard/admin', icon: Users , label: "Users" },
   { href: '/Dashboard/admin/companies', icon: Building , label: "Companies" },
-  { href: '/Dashboard/admin/jobs', icon: Briefcase , label: "Jobs" },
-  { href: '/Dashboard/admin/payments', icon: CreditCard, label: "Payments" },
-  { href: '/Dashboard/admin/settings', icon: Gear, label: "Settings" },
+  { href: '/Dashboard/admin', icon: Briefcase , label: "Jobs" },
+  { href: '/Dashboard/admin', icon: CreditCard, label: "Payments" },
+  { href: '/Dashboard/admin', icon: Gear, label: "Settings" },
 ];
 
   const { data: session } = authClient.useSession()

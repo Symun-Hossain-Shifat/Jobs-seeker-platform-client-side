@@ -1,8 +1,11 @@
+import { AuthHeader } from "../GetData/authHeader";
+
 export async  function PostCompany (CompanyData) {
      const res = await fetch(`${process.env.NEXT_PUBLIC_SERVER_URL}/api/companyinfo` , {
           method : 'POST', 
         headers : {
-          'content-type' : 'application/json'
+          'content-type' : 'application/json' ,
+          ... await AuthHeader()
         },
         body : JSON.stringify(CompanyData)
         })

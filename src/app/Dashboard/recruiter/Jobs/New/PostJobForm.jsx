@@ -146,7 +146,7 @@ export default function PostJobPage({Companyinfo}) {
   const [loading, setLoading] = useState(false);
   const { data: session } = authClient.useSession();
   const User = session?.user?.id;
-  
+
   const {
     register,
     handleSubmit,

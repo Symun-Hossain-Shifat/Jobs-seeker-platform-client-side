@@ -12,7 +12,7 @@ export default function Navbar() {
   const [open, setOpen] = useState(false);
   const { data: session } = authClient.useSession();
   const User = session?.user;
-
+ 
 
   
 // Unified navigation links configuration
