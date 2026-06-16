@@ -11,8 +11,8 @@ async function JobsTable() {
 
   const companyId = User ;
   const status = "active";
-  const Datas = await GetJob(companyId, status);
-  console.log(companyId, status)
+  const Datas = await GetJob(companyId , status);
+  // console.log(companyId, status)
   return (
     <div className="px-4 py-4 sm:px-6">
       <h1 className="font-bold text-2xl py-4">Manage All Jobs</h1>
