@@ -4,24 +4,25 @@ import Link from "next/link";
 import React, { useState } from "react";
 import { FaEnvelope, FaGoogle, FaLock, FaUser } from "react-icons/fa";
 import { PiBracketsCurlyBold } from "react-icons/pi";
-import {Description, Label, Radio, RadioGroup} from "@heroui/react";
-import { redirect } from "next/navigation";
+import {Description, Label, Radio, RadioGroup, toast} from "@heroui/react";
+import {  useRouter } from "next/navigation";
 
 function Signuppage() {
 
-
+ const router = useRouter()
   const [role , setRole ] = useState('Recruiter')
-
+  console.log(role)
   const Handlesignup = async (e) => {
   e.preventDefault()
   const FormData = e.target
   const name = FormData.Name.value
   const email = FormData.Email.value
   const image = FormData.Image.value 
-  const plan = role === 'Recruiter' ? 'reqruiter_free' : 'seeker_free';
+  const plan = role === 'Recruiter' ? 'reqruiter_growth' : 'seeker_free';
   
   const password = FormData.Password.value 
-  console.log(name , email , image , password , role )
+  console.log(name , email , image , password , role ) 
+  
   const { data, error } = await authClient.signUp.email({
     name: name, // required
     email: email , // required
@@ -35,7 +36,7 @@ function Signuppage() {
 
 if(data){
   alert('Registration Successfull !')
-  redirect('/signin')
+  router.push('/')
 }else if (error){
   alert(`Registration Failed . ${error}`)
 }
@@ -148,30 +149,33 @@ if(data){
           
           {/* {Radiogroup section } */}
 
-                  <div className="flex flex-col gap-4">
-              <Label>Define Role</Label>
-              <RadioGroup  defaultValue= 'Recruiter' onChange={ value => setRole(value)}  orientation="horizontal">
-                <Radio value="Recruiter">
-                  <Radio.Control>
-                    <Radio.Indicator />
-                  </Radio.Control>
-                  <Radio.Content>
-                    <Label>Recruiter</Label>
-                  
-                  </Radio.Content>
-                </Radio>
-                <Radio value="Job Seeker">
-                  <Radio.Control>
-                    <Radio.Indicator />
-                  </Radio.Control>
-                  <Radio.Content>
-                    <Label>Job Seeker</Label>
-                  
-                  </Radio.Content>
-                </Radio>
-                
-              </RadioGroup>
-            </div>
+              <div className="flex flex-col gap-4">
+      <Label>Subscription plan</Label>
+      <RadioGroup defaultValue= {role} onValueChange={(value) => {
+      console.log(value);
+      setRole(value);
+    }} name="plan-orientation" orientation="horizontal">
+        <Radio value="Recruiter">
+          <Radio.Content>
+            <Radio.Control>
+              <Radio.Indicator />
+            </Radio.Control>
+            Recruiter
+          </Radio.Content>
+          <Description>For side projects</Description>
+        </Radio>
+        <Radio value="Seeker">
+          <Radio.Content>
+            <Radio.Control>
+              <Radio.Indicator />
+            </Radio.Control>
+            Seeker
+          </Radio.Content>
+          <Description>Advanced reporting</Description>
+        </Radio>
+       
+      </RadioGroup>
+    </div>
 
           {/* Register Button */}
           <button

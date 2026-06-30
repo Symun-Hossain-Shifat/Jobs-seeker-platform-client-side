@@ -9,15 +9,15 @@
     "lint": "eslint"
   },
   "dependencies": {
-    "@better-auth/mongo-adapter": "^1.6.13",
     "@heroui/button": "^2.2.32",
     "@heroui/input": "^2.4.33",
     "@heroui/react": "^3.1.0",
     "@heroui/styles": "^3.1.0",
     "@hookform/resolvers": "^5.4.0",
     "@stripe/stripe-js": "^9.8.0",
-    "better-auth": "^1.6.13",
-    "kysely": "^0.29.2",
+     "@better-auth/mongo-adapter": "1.6.12",
+    "better-auth": "1.6.12",
+    "kysely": "0.28.17" ,
     "lucide-react": "^1.17.0",
     "mongodb": "^7.2.0",
     "next": "^16.2.6",

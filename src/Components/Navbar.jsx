@@ -43,9 +43,7 @@ navLinks.push(
   }
 )
 }
-if(isPending){
-  return <h1>Loading...</h1>
-}
+
 
   // Render Auth element cleanly
   const renderAuthButton = () => (

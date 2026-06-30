@@ -1,5 +1,3 @@
-
-
 /** @type {import('next').Next} */
 const nextConfig = {
   output: 'standalone',
