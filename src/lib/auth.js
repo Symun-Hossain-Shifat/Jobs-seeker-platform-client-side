@@ -21,23 +21,25 @@ export const auth = betterAuth({
   emailAndPassword: {
     enabled: true,
   },
-   socialProviders: {
-        google: { 
-            clientId: process.env.GOOGLE_CLIENT_ID , 
-            clientSecret: process.env.GOOGLE_CLIENT_SECRET, 
-        }, 
+  socialProviders: {
+    google: {
+      clientId: process.env.GOOGLE_CLIENT_ID,
+      clientSecret: process.env.GOOGLE_CLIENT_SECRET,
     },
-  database: mongodbAdapter(db, {
-    client,
-  }),
+  },
+  database: mongodbAdapter(db, { client }),
   user: {
     additionalFields: {
       role: {
+        type: "string",
         defaultValue: "Job Seeker",
+        input: true,
       },
-      Plans : {
-         defaultValue  :  'seeker_free'
-      }
+      plan: {
+        type: "string",
+        defaultValue: "seeker_free",
+        input: true,
+      },
     },
   },
 });

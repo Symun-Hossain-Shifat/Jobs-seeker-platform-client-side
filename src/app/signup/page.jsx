@@ -1,183 +1,153 @@
 'use client'
 import { authClient } from "@/lib/auth-client";
 import Link from "next/link";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { FaEnvelope, FaGoogle, FaLock, FaUser } from "react-icons/fa";
 import { PiBracketsCurlyBold } from "react-icons/pi";
-import {Description, Label, Radio, RadioGroup, toast} from "@heroui/react";
-import {  useRouter } from "next/navigation";
+import { toast } from "@heroui/react";
+import { useRouter } from "next/navigation";
 
 function Signuppage() {
-
- const router = useRouter()
-  const [role , setRole ] = useState('Recruiter')
-  console.log(role)
+  const router = useRouter();
+  const [role, setRole] = useState('Recruiter');
+  const [plan , setPlan] = useState('seeker_free')
   const Handlesignup = async (e) => {
-  e.preventDefault()
-  const FormData = e.target
-  const name = FormData.Name.value
-  const email = FormData.Email.value
-  const image = FormData.Image.value 
-  const plan = role === 'Recruiter' ? 'reqruiter_growth' : 'seeker_free';
-  
-  const password = FormData.Password.value 
-  console.log(name , email , image , password , role ) 
-  
-  const { data, error } = await authClient.signUp.email({
-    name: name, // required
-    email: email , // required
-    password: password , // required
-    image: image ,
-    role : role ,
-    plan : plan ,
-    callbackURL: "/signin",
-});
+    e.preventDefault();
+    const FormData = e.target;
+    const name = FormData.Name.value;
+    const email = FormData.Email.value;
+    const image = FormData.Image.value;
+    
+    
+    const password = FormData.Password.value;
 
+    const { data, error } = await authClient.signUp.email({
+      name,
+      email,
+      password,
+      image,
+      role,
+      plan,
+      callbackURL: "/signin",
+    });
 
-if(data){
-  alert('Registration Successfull !')
-  router.push('/')
-}else if (error){
-  alert(`Registration Failed . ${error}`)
-}
-  }
+    if (data) {
+      alert('Registration Successfull !');
+      router.push('/');
+    } else if (error) {
+      alert(`Registration Failed . ${error}`);
+    }
+  };
 
-   const Googlesignin = async () => {
-        const data = await authClient.signIn.social({
-    provider: "google",
-  });
-
-  if(data){
-  
-  router.push('/')
+  const Googlesignin = async () => {
+    const data = await authClient.signIn.social({ provider: "google" });
+    if (data) {
+      router.push('/');
+    } else {
+      toast.warning(`Registration Failed !`);
+    }
+  };
+useEffect(()=>{
+if(role === 'Recruiter' ){
+  setPlan('reqruiter_growth')
 }else{
-  toast.warning(`Registration Failed !`)
-} }
+  setPlan('seeker_free')
+}
+},[role])
   return (
     <section className="min-h-screen bg-[#0A0A0A] flex items-center justify-center px-4 py-10">
       <div className="w-full max-w-md bg-[#111111] border border-gray-800 shadow-2xl rounded-2xl p-6 sm:p-8">
 
-        {/* Heading */}
         <div className="text-center mb-8">
-          <h1 className="text-3xl sm:text-4xl font-bold text-white">
-            Create Account
-          </h1>
-          <p className="text-gray-400 mt-2">
-            Join us and start your journey today
-          </p>
+          <h1 className="text-3xl sm:text-4xl font-bold text-white">Create Account</h1>
+          <p className="text-gray-400 mt-2">Join us and start your journey today</p>
         </div>
 
-        {/* Form */}
-        <form onSubmit={Handlesignup}   className="space-y-5">
+        <form onSubmit={Handlesignup} className="space-y-5">
 
           {/* Full Name */}
           <div>
-            <label className="block text-sm font-medium text-gray-300 mb-2">
-              Full Name
-            </label>
-
+            <label className="block text-sm font-medium text-gray-300 mb-2">Full Name</label>
             <div className="flex items-center border border-gray-700 rounded-lg px-3 py-3 bg-[#1A1A1A] focus-within:border-cyan-500 transition">
               <FaUser className="text-gray-500 mr-3" />
-
-              <input
-                name="Name"
-                type="text"
-                required
-                placeholder="Enter your full name"
-                className="w-full bg-transparent outline-none text-white placeholder:text-gray-500 text-sm"
-              />
+              <input name="Name" type="text" required placeholder="Enter your full name"
+                className="w-full bg-transparent outline-none text-white placeholder:text-gray-500 text-sm" />
             </div>
           </div>
 
           {/* Email */}
           <div>
-            <label className="block text-sm font-medium text-gray-300 mb-2">
-              Email Address
-            </label>
-
+            <label className="block text-sm font-medium text-gray-300 mb-2">Email Address</label>
             <div className="flex items-center border border-gray-700 rounded-lg px-3 py-3 bg-[#1A1A1A] focus-within:border-cyan-500 transition">
               <FaEnvelope className="text-gray-500 mr-3" />
-
-              <input
-                name="Email"
-                type="email"
-                required
-                placeholder="Enter your email"
-                className="w-full bg-transparent outline-none text-white placeholder:text-gray-500 text-sm"
-              />
+              <input name="Email" type="email" required placeholder="Enter your email"
+                className="w-full bg-transparent outline-none text-white placeholder:text-gray-500 text-sm" />
             </div>
           </div>
 
           {/* Image URL */}
           <div>
-            <label className="block text-sm font-medium text-gray-300 mb-2">
-              Profile Image URL
-            </label>
-
+            <label className="block text-sm font-medium text-gray-300 mb-2">Profile Image URL</label>
             <div className="flex items-center border border-gray-700 rounded-lg px-3 py-3 bg-[#1A1A1A] focus-within:border-cyan-500 transition">
               <PiBracketsCurlyBold className="text-gray-500 mr-3" />
-
-              <input
-                name="Image"
-                type="url"
-                required
-                placeholder="Enter profile image URL"
-                className="w-full bg-transparent outline-none text-white placeholder:text-gray-500 text-sm"
-              />
+              <input name="Image" type="url" required placeholder="Enter profile image URL"
+                className="w-full bg-transparent outline-none text-white placeholder:text-gray-500 text-sm" />
             </div>
           </div>
 
           {/* Password */}
           <div>
-            <label className="block text-sm font-medium text-gray-300 mb-2">
-              Password
-            </label>
-
+            <label className="block text-sm font-medium text-gray-300 mb-2">Password</label>
             <div className="flex items-center border border-gray-700 rounded-lg px-3 py-3 bg-[#1A1A1A] focus-within:border-cyan-500 transition">
               <FaLock className="text-gray-500 mr-3" />
-
-              <input
-                name="Password"
-                type="password"
-                required
-                placeholder="Create a strong password"
-                className="w-full bg-transparent outline-none text-white placeholder:text-gray-500 text-sm"
-              />
+              <input name="Password" type="password" required placeholder="Create a strong password"
+                className="w-full bg-transparent outline-none text-white placeholder:text-gray-500 text-sm" />
             </div>
           </div>
 
-          
-          {/* {Radiogroup section } */}
+          {/* Native, fully-controlled radio group */}
+          <div className="flex flex-col gap-3">
+            <span className="block text-sm font-medium text-gray-300">Subscription plan</span>
 
-              <div className="flex flex-col gap-4">
-      <Label>Subscription plan</Label>
-      <RadioGroup defaultValue= {role} onValueChange={(value) => {
-      console.log(value);
-      setRole(value);
-    }} name="plan-orientation" orientation="horizontal">
-        <Radio value="Recruiter">
-          <Radio.Content>
-            <Radio.Control>
-              <Radio.Indicator />
-            </Radio.Control>
-            Recruiter
-          </Radio.Content>
-          <Description>For side projects</Description>
-        </Radio>
-        <Radio value="Seeker">
-          <Radio.Content>
-            <Radio.Control>
-              <Radio.Indicator />
-            </Radio.Control>
-            Seeker
-          </Radio.Content>
-          <Description>Advanced reporting</Description>
-        </Radio>
-       
-      </RadioGroup>
-    </div>
+            <div className="flex gap-4">
+              {[
+                { value: 'Recruiter', desc: 'For side projects' },
+                { value: 'Seeker', desc: 'Advanced reporting' },
+              ].map((opt) => (
+                <label
+                  key={opt.value}
+                  className={`flex-1 cursor-pointer border rounded-lg px-4 py-3 transition ${
+                    role === opt.value
+                      ? 'border-cyan-500 bg-[#16232a]'
+                      : 'border-gray-700 bg-[#1A1A1A] hover:border-gray-600'
+                  }`}
+                >
+                  <input
+                    type="radio"
+                    name="plan-orientation"
+                    value={opt.value}
+                    checked={role === opt.value}
+                    onChange={(e) => setRole(e.target.value)}
+                    className="sr-only"
+                  />
+                  <div className="flex items-center gap-2">
+                    <span
+                      className={`w-4 h-4 rounded-full border flex items-center justify-center ${
+                        role === opt.value ? 'border-cyan-500' : 'border-gray-600'
+                      }`}
+                    >
+                      {role === opt.value && (
+                        <span className="w-2 h-2 rounded-full bg-cyan-500" />
+                      )}
+                    </span>
+                    <span className="text-white text-sm font-medium">{opt.value}</span>
+                  </div>
+                  <p className="text-xs text-gray-400 mt-1">{opt.desc}</p>
+                </label>
+              ))}
+            </div>
+          </div>
 
-          {/* Register Button */}
           <button
             type="submit"
             className="w-full bg-cyan-500 hover:bg-cyan-600 text-white py-3 rounded-lg font-medium transition duration-300"
@@ -185,19 +155,13 @@ if(data){
             Create Account
           </button>
 
-
-          {/* Divider */}
           <div className="relative text-center text-sm text-gray-500">
-            <span className="bg-[#111111] px-3 relative z-10">
-              Or continue with
-            </span>
-
+            <span className="bg-[#111111] px-3 relative z-10">Or continue with</span>
             <div className="absolute top-1/2 left-0 w-full border-t border-gray-700"></div>
           </div>
 
-          {/* Google Button */}
           <button
-           onClick={Googlesignin}
+            onClick={Googlesignin}
             type="button"
             className="w-full border border-gray-700 bg-[#1A1A1A] py-3 rounded-lg flex items-center justify-center gap-2 text-gray-300 hover:bg-[#222222] transition"
           >
@@ -205,13 +169,9 @@ if(data){
             <span className="text-sm">Continue with Google</span>
           </button>
 
-          {/* Login Link */}
           <p className="text-center text-sm text-gray-400">
             Already have an account?{" "}
-            <Link
-              href="/signin"
-              className="text-cyan-400 font-medium hover:text-cyan-300 transition"
-            >
+            <Link href="/signin" className="text-cyan-400 font-medium hover:text-cyan-300 transition">
               Sign In
             </Link>
           </p>
@@ -222,4 +182,3 @@ if(data){
 }
 
 export default Signuppage;
-
