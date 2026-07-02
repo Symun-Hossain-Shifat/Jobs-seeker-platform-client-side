@@ -26,7 +26,7 @@ export function SideNavigation() {
 ];
 const AdminNavItems = [
   { href: '/Dashboard/admin', icon: LayoutGrid, label: "Dashboard" },
-  { href: '/Dashboard/admin', icon: Users , label: "Users" },
+  { href: '/Dashboard/admin/users', icon: Users , label: "Users" },
   { href: '/Dashboard/admin/companies', icon: Building , label: "Companies" },
   { href: '/Dashboard/admin', icon: Briefcase , label: "Jobs" },
   { href: '/Dashboard/admin', icon: CreditCard, label: "Payments" },
