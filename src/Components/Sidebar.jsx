@@ -33,8 +33,13 @@ const AdminNavItems = [
   { href: '/Dashboard/admin', icon: Gear, label: "Settings" },
 ];
 
-  const { data: session } = authClient.useSession()
-  const User = session?.user
+  const { data: session , isPending} = authClient.useSession() 
+  if (isPending) {
+  return null;
+}
+  const User = session?.user 
+  
+
 const GetNavitems = (role) => {
   const navItems = {
     'Admin' : AdminNavItems ,
