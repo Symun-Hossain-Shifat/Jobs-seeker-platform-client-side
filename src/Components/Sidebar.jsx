@@ -29,7 +29,7 @@ const AdminNavItems = [
   { href: '/Dashboard/admin/users', icon: Users , label: "Users" },
   { href: '/Dashboard/admin/companies', icon: Building , label: "Companies" },
   { href: '/Dashboard/admin/alljobs', icon: Briefcase , label: "Jobs" },
-  { href: '/Dashboard/admin', icon: CreditCard, label: "Payments" },
+  { href: '/Dashboard/admin/payment', icon: CreditCard, label: "Payments" },
   { href: '/Dashboard/admin', icon: Gear, label: "Settings" },
 ];
 
