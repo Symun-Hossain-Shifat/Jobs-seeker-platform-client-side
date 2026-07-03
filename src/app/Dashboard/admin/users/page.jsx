@@ -2,7 +2,8 @@ import { GetUsers } from "@/lib/Action/GetData/getUser";
 
 export default async function Dashboarduserpage() {
   const users = await GetUsers();
-
+  const result = users.filter(user => user.role !== 'Admin') 
+  // console.log(result)
   return (
     <div className="min-h-screen bg-black p-8">
       <div className="max-w-7xl mx-auto">
@@ -18,7 +19,7 @@ export default async function Dashboarduserpage() {
 
         {/* Cards */}
         <div className="grid gap-6 sm:grid-cols-2 xl:grid-cols-3">
-          {users?.map((user) => (
+          {result?.map((user) => (
             <div
               key={user._id}
               className="rounded-2xl border border-zinc-800 bg-zinc-900 p-6 shadow-lg transition-all duration-300 hover:-translate-y-1 hover:border-blue-500 hover:shadow-blue-500/20"
