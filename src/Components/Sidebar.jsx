@@ -13,7 +13,7 @@ export function SideNavigation() {
     { href: '/Dashboard/recruiter/Company' ,icon: Magnifier, label: "Company"},
     { href: '/Dashboard/recruiter/Jobs' ,icon: Bell, label: "All Jobs"},
     { href: '/Dashboard/recruiter/Jobs/New' ,icon: Envelope, label: "Add Job"},
-    { href: '/Dashboard/recruiter' ,icon: Person, label: "Profile"},
+    { href: '/Dashboard/recruiter/profile' ,icon: Person, label: "Profile"},
     { href: '/Dashboard/recruiter' ,icon: Gear, label: "Settings"},
   ];
  const SeekerNavItems = [
