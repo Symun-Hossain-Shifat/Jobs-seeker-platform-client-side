@@ -21,7 +21,7 @@ export function SideNavigation() {
   { href: '/Dashboard/seeker', icon: Magnifier, label: "Jobs" },
   { href: '/Dashboard/seeker/appliedjobs', icon: Bookmark, label: "Applied Jobs" },
   { href: '/Dashboard/seeker', icon: FileText, label: "Applications" },
-  { href: '/Dashboard/seeker', icon: CreditCard, label: "Billing" },
+  { href: '/Dashboard/seeker/Payment', icon: CreditCard, label: "Billing" },
   { href: '/Dashboard/seeker', icon: Gear, label: "Settings" },
 ];
 const AdminNavItems = [

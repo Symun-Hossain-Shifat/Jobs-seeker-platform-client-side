@@ -16,7 +16,7 @@ import { authClient } from "@/lib/auth-client";
 export default function RecruiterProfilepage() { 
     const { data: session } = authClient.useSession() 
     const User = session?.user 
-    console.log(User)
+    // console.log(User)
   return (
     <div className="bg-base-200 min-h-screen py-10">
       <div className="max-w-7xl mx-auto px-5">
@@ -25,20 +25,30 @@ export default function RecruiterProfilepage() {
         <div className="bg-base-100 rounded-2xl shadow-lg p-8">
           <div className="flex flex-col md:flex-row gap-8 items-center">
 
-            <Image
-              src="https://i.pravatar.cc/200"
-              alt="Recruiter"
-              width={140}
-              height={140}
-              className="rounded-full border-4 border-primary"
-            />
+           {User.image ? (
+                <Image
+                    src={User.image}
+                    alt="Profile"
+                    width={120}
+                    height={120}
+                    className="rounded-full"
+                />
+                ) : (
+                <Image
+                    src="/default-avatar.png"
+                    alt="Default Profile"
+                    width={120}
+                    height={120}
+                    className="rounded-full"
+                />
+                )}
 
             <div className="flex-1">
 
               <div className="flex justify-between items-start">
                 <div>
                   <h1 className="text-3xl font-bold">
-                    John Anderson
+                    {User?.name}
                   </h1>
 
                   <p className="text-primary font-semibold mt-1">
